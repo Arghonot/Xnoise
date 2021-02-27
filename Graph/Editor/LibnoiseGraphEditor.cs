@@ -59,10 +59,10 @@ namespace NoiseGraph
                 graph.blackboard = bb as Graph.Blackboard;
             }
             
-            if (graph.Root == null)
+            if (graph.root == null)
             {
                 var root = CreateNode(typeof(RootModuleBase), new Vector2(0, 0));
-                graph.Root = root as RootModuleBase;
+                graph.root = root as RootModuleBase;
             }
         }
     }

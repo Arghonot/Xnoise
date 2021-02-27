@@ -8,7 +8,7 @@ namespace NoiseGraph
     [CreateNodeMenu("NoiseGraph/Transformer/Turbulence")]
     public class TurbulenceNode : LibnoiseNode
     {
-        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
+        [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.InheritedAny)]
         public SerializableModuleBase Input;
 
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]

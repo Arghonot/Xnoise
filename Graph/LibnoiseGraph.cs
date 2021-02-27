@@ -7,8 +7,6 @@ namespace NoiseGraph
     [CreateAssetMenu]
     public class LibnoiseGraph : DefaultGraph
     {
-        public RootModuleBase Root;
-
         public SerializableModuleBase GetGenerator(GenericDicionnary newgd = null)
         {
             if (newgd != null)
@@ -16,7 +14,7 @@ namespace NoiseGraph
                 this.gd = newgd;
             }
 
-            return (SerializableModuleBase)Root.GetValue(Root.Ports.First());
+            return (SerializableModuleBase)root.GetValue(root.Ports.First());
         }
     }
 }
