@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static XNode.Node;
-
-namespace NoiseGraph
+﻿namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Graph/LibNoiseSubGraph")]
     public class LibNoiseSubGraph : Graph.SubGraphNode
