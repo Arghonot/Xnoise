@@ -16,6 +16,7 @@ namespace NoiseGraph
             }
 
             SubGraph.gd = ((LibnoiseGraph)graph).gd;
+
             return ((RootModuleBase)((LibnoiseGraph)SubGraph).root).Run();
         }
     }

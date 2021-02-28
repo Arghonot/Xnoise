@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NoiseGraph
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "libnoiseGraph", menuName = "Graphs/libnoiseGraph", order = 2)]
     public class LibnoiseGraph : DefaultGraph
     {
         public SerializableModuleBase GetGenerator(GenericDicionnary newgd = null)

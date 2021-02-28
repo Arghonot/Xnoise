@@ -10,12 +10,13 @@ namespace NoiseGraph
     [CustomNodeGraphEditor(typeof(LibnoiseGraph))]
     public class LibnoiseGraphEditor : XNodeEditor.NodeGraphEditor
     {
+        // TODO find a way to make this inherit generic node graph editor as well
+        // perhaps use attribute Don't show in dialogue
         List<Type> HiddenTypes = new List<Type>()
         {
             typeof(RootModuleBase),
-            typeof(Graph.Leaf<object>),
-            typeof(Graph.Branch<object>),
             typeof(Graph.Blackboard),
+            typeof(Graph.Single),
             typeof(LibnoiseNode),
             typeof(Graph.NodeBase)
         };
@@ -38,7 +39,9 @@ namespace NoiseGraph
 
         public override string GetNodeMenuName(Type type)
         {
-            if (!HiddenTypes.Contains(type) && !type.ToString().Contains("Root"))
+            if (!HiddenTypes.Contains(type) &&
+                !type.ToString().Contains("Root") &&
+                !type.ToString().Contains("[T]"))
             {
                 return base.GetNodeMenuName(type);
             }
