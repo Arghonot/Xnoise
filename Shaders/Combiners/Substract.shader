@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Substract"
+﻿Shader "Xnoise/Combiners/Substract"
 {
     Properties
     {
@@ -19,14 +19,16 @@
 
             struct appdata
             {
+                float4 vertex : POSITION;
                 float2 uv1 : TEXCOORD0;
                 float2 uv2 : TEXCOORD1;
-        };
+            };
 
             struct v2f
             {
                 float2 uv1 : TEXCOORD0;
                 float2 uv2 : TEXCOORD1;
+                float4 vertex : SV_POSITION;
             };
 
             sampler2D _TextureA;
@@ -38,6 +40,7 @@
             {
                 v2f o;
 
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv1 = TRANSFORM_TEX(v.uv1, _TextureA);
                 o.uv2 = TRANSFORM_TEX(v.uv2, _TextureB);
 

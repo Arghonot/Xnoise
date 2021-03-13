@@ -1,13 +1,16 @@
-﻿Shader "Unlit/Cylinder"
+﻿Shader "ShaderNodeBase"
 {
+    // This is a simple shader that contain the minimum to be used in Xnoise
     Properties
-    {
+    { 
         _Frequency("Frequency",Float) = 0.0
         _PositionX("PositionX",Float) = 0.0
         _PositionY("PositionY",Float) = 0.0
+
     }
     SubShader
     {
+        // No culling or depth
         Cull Off ZWrite Off ZTest Always
 
         Pass
@@ -34,7 +37,7 @@
             float _PositionX;
             float _PositionY;
 
-            v2f vert(appdata v)
+            v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -42,22 +45,8 @@
                 return o;
             }
 
-            float ComputeColor(float x, float y, float z)
+            fixed4 frag (v2f i) : SV_Target
             {
-                x *= _Frequency;
-                z *= _Frequency;
-                float dfc = sqrt(x * x + z * z);
-                float dfss = dfc - floor(dfc);
-                float dfls = 1.0 - dfss;
-                float nd = min(dfss, dfls);
-
-                return 1.0 - (nd * 4.0);
-            }
-
-            fixed4 frag(v2f i) : SV_Target
-            {
-                return ComputeColor(i.uv.x + _PositionX, 0.0, i.uv.y + _PositionY);
-
                 return 1;
             }
             ENDCG
