@@ -1,13 +1,12 @@
-﻿Shader "Xnoise/ShaderNodeBase"
+﻿Shader "Xnoise/Combiners/Multiply"
 {
     // This is a simple shader that contain the minimum to be used in Xnoise
     Properties
-    { 
-        _Frequency("Frequency",Float) = 0.0
-        _PositionX("PositionX",Float) = 0.0
-        _PositionY("PositionY",Float) = 0.0
+    {
+        _TextureA("TextureA", 2D) = "white" {}
+        _TextureB("TextureB", 2D) = "white" {}
     }
-    SubShader
+        SubShader
     {
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
@@ -23,32 +22,36 @@
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float2 uv1 : TEXCOORD0;
+                float2 uv2 : TEXCOORD1;
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
+                float2 uv1 : TEXCOORD0;
+                float2 uv2 : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
-            float _Frequency;
-            float _PositionX;
-            float _PositionY;
+            sampler2D _TextureA;
+            float4 _TextureA_ST;
+            sampler2D _TextureB;
+            float4 _TextureB_ST;
 
-            v2f vert (appdata v)
+            v2f vert(appdata v)
             {
                 v2f o;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv1 = TRANSFORM_TEX(v.uv1, _TextureA);
+                o.uv2 = TRANSFORM_TEX(v.uv2, _TextureB);
 
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f i) : SV_Target
             {
-                return 1;
+                return (tex2D(_TextureA, i.uv1) * tex2D(_TextureB, i.uv2));
             }
             ENDCG
         }

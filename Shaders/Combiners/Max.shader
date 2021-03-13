@@ -1,11 +1,9 @@
-﻿Shader "Xnoise/ShaderNodeBase"
+﻿Shader "Xnoise/Combiners/Max"
 {
-    // This is a simple shader that contain the minimum to be used in Xnoise
     Properties
-    { 
-        _Frequency("Frequency",Float) = 0.0
-        _PositionX("PositionX",Float) = 0.0
-        _PositionY("PositionY",Float) = 0.0
+    {
+        _TextureA("TextureA", 2D) = "white" {}
+        _TextureB("TextureB", 2D) = "white" {}
     }
     SubShader
     {
@@ -32,23 +30,24 @@
                 float4 vertex : SV_POSITION;
             };
 
-            float _Frequency;
-            float _PositionX;
-            float _PositionY;
+            sampler2D _TextureA;
+            float4 _TextureA_ST;
+            sampler2D _TextureB;
+            float4 _TextureB_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
-
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-
                 return o;
             }
 
+            sampler2D _MainTex;
+
             fixed4 frag (v2f i) : SV_Target
             {
-                return 1;
+                return max(tex2D(_TextureA, i.uv), tex2D(_TextureB, i.uv));
             }
             ENDCG
         }

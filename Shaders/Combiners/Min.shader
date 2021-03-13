@@ -3,11 +3,12 @@
     Properties
     {
         _TextureA("TextureA", 2D) = "white" {}
-        _TextureB("TextureB", 2D) = "white" {} }
+        _TextureB("TextureB", 2D) = "white" {}
+    }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
 
         Pass
         {

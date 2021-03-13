@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Cylinder"
+﻿Shader "Xnoise/Generators/Cylinder"
 {
     Properties
     {

@@ -6,8 +6,8 @@
         _TextureB("TextureB", 2D) = "white" {} }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
 
         Pass
         {
@@ -49,7 +49,6 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 return (tex2D(_TextureA, i.uv1) - tex2D(_TextureB, i.uv2));
             }
             ENDCG

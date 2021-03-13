@@ -1,13 +1,15 @@
-﻿Shader "Unlit/Checker"
+﻿Shader "Xnoise/Generators/Checker"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _PositionX("PositionX",Float) = 0.0
+        _PositionY("PositionY",Float) = 0.0
+        _PositionZ("PositionZ",Float) = 0.0
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
 
         Pass
         {
@@ -27,20 +29,18 @@
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
-                float3 worldPos : TEXCOORD1;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
+            float _PositionX;
+            float _PositionY;
+            float _PositionZ;
 
             v2f vert (appdata v)
             {
                 v2f o;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
 
                 return o;
             }
@@ -56,7 +56,7 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return ComputeChecker(i.worldPos.x,i.worldPos.y, i.worldPos.z);
+                return ComputeChecker(i.uv.x + _PositionX, _PositionY, i.uv.y + _PositionZ);
             }
             ENDCG
         }
