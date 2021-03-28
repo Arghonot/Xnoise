@@ -54,9 +54,24 @@
                 return 1.0 - (nd * 4.0);
             }
 
+            float4 GetSphericalCoordinatesRad(float Lnrad, float Latrad)
+            {
+                return float4(
+                    cos(Latrad) * sin(Lnrad),
+                    cos(Latrad) * cos(Lnrad),
+                    sin(Latrad),
+                    0);
+            }
+
             fixed4 frag(v2f i) : SV_Target
             {
-                return ComputeColor(i.uv.x + _PositionX, 0.0, i.uv.y + _PositionY);
+                float Ln = ((i.uv.x * 2) - 1) * 1.5708;
+                float Lat = ((i.uv.y * 2) - 1) * 1.5708;// 3.14159;
+                float4  Coordinates = GetSphericalCoordinatesRad(Ln, Lat);
+
+                float color = ComputeColor(Coordinates.x, Coordinates.y, Coordinates.z);
+
+                return float4(color, color, color, 1);
 
                 return 1;
             }
