@@ -1,15 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-[BlackboardType("QualityMode")]
-public class Quality : Variable
+namespace Graph
 {
-    public override string GetDefaultName()
+    #region LibnoiseVariables
+
+    [Serializable]
+    [StorableType(typeof(LibNoise.QualityMode))]
+    public class QualityModeVariable : VariableStorage<LibNoise.QualityMode> { }
+
+    public partial class GraphVariableStorage : GraphVariableStorageHelper
     {
-        return "QualityMode";
+        [SerializeField] public List<QualityModeVariable> QualityModes;
     }
 
-    public override Type GetValueType()
-    {
-        return typeof(LibNoise.QualityMode);
-    }
+    #endregion
 }
+
+//[BlackboardType("QualityMode")]
+//public class Quality : Variable
+//{
+//    public override string GetDefaultName()
+//    {
+//        return "QualityMode";
+//    }
+
+//    public override Type GetValueType()
+//    {
+//        return typeof(LibNoise.QualityMode);
+//    }
+//}

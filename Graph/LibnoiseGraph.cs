@@ -7,11 +7,11 @@ namespace NoiseGraph
     [CreateAssetMenu(fileName = "libnoiseGraph", menuName = "Graphs/libnoiseGraph", order = 2)]
     public class LibnoiseGraph : DefaultGraph
     {
-        public SerializableModuleBase GetGenerator(GenericDicionnary newgd = null)
+        public SerializableModuleBase GetGenerator(GraphVariableStorage newstorage = null)
         {
-            if (newgd != null)
+            if (newstorage != null)
             {
-                this.gd = newgd;
+                this.storage = newstorage;
             }
 
             return (SerializableModuleBase)root.GetValue(root.Ports.First());

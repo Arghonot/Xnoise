@@ -10,7 +10,7 @@
                 return new SerializableModuleBase(0);
             }
 
-            SubGraph.gd = ((LibnoiseGraph)graph).gd;
+            SubGraph.storage = ((LibnoiseGraph)graph).storage;
 
             return ((RootModuleBase)((LibnoiseGraph)SubGraph).root).Run();
         }
