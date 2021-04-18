@@ -60,6 +60,7 @@ namespace NoiseGraph
             {
                 var bb = CreateNode(typeof(Graph.Blackboard), new Vector2(0, 0));
                 graph.blackboard = bb as Graph.Blackboard;
+                graph.blackboard.InitializeBlackboard();
             }
             
             if (graph.root == null)
