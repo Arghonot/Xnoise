@@ -6,13 +6,13 @@ namespace Graph
 {
     #region LibnoiseVariables
 
-    [Serializable]
-    [StorableType(typeof(LibNoise.QualityMode))]
-    public class QualityModeVariable : VariableStorage<LibNoise.QualityMode> { }
+    //[Serializable]
+    //[StorableType(typeof(LibNoise.QualityMode))]
+    //public class QualityModeVariable : VariableStorage<LibNoise.QualityMode> { }
 
     public partial class GraphVariableStorage : GraphVariableStorageHelper
     {
-        [SerializeField] public List<QualityModeVariable> QualityModes;
+        //[SerializeField] public List<QualityModeVariable> QualityModes;
     }
 
     #endregion

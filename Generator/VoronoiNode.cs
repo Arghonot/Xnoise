@@ -20,15 +20,15 @@ namespace NoiseGraph
 
         public override object Run()
         {
-            // if editing the graph -> we stick to current variables
-            if (Application.isEditor && !Application.isPlaying)
-            {
-                return new Voronoi(
-                    this.frequency,
-                    this.displacement,
-                    this.Seed,
-                    this.distance);
-            }
+            //// if editing the graph -> we stick to current variables
+            //if (Application.isEditor && !Application.isPlaying)
+            //{
+            //    return new Voronoi(
+            //        this.frequency,
+            //        this.displacement,
+            //        this.Seed,
+            //        this.distance);
+            //}
 
             //return new Voronoi(frequency, displacement, Seed, distance);
             return new Voronoi(

@@ -1,7 +1,7 @@
 ﻿namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Graph/LibNoiseSubGraph")]
-    public class LibNoiseSubGraph : Graph.SubGraphNode
+    public class LibNoiseSubGraph : Graph.SubGraphNode<SerializableModuleBase>
     {
         public override object Run()
         {
@@ -10,7 +10,7 @@
                 return new SerializableModuleBase(0);
             }
 
-            SubGraph.storage = ((LibnoiseGraph)graph).storage;
+            //SubGraph.storage = ((LibnoiseGraph)graph).storage;
 
             return ((RootModuleBase)((LibnoiseGraph)SubGraph).root).Run();
         }

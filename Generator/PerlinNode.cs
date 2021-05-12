@@ -24,16 +24,16 @@ namespace NoiseGraph
         public override object Run()
         {
             // if editing the graph -> we stick to current variables
-            if (Application.isEditor && !Application.isPlaying)
-            {
-                return new Perlin(
-                    this.frequency,
-                    this.lacunarity,
-                    this.persistence,
-                    this.Octaves,
-                    this.Seed,
-                    this.Quality);
-            }
+            //if (Application.isEditor && !Application.isPlaying)
+            //{
+            //    return new Perlin(
+            //        this.frequency,
+            //        this.lacunarity,
+            //        this.persistence,
+            //        this.Octaves,
+            //        this.Seed,
+            //        this.Quality);
+            //}
 
             return new Perlin(
                 GetInputValue<double>("frequency", this.frequency),

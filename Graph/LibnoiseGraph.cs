@@ -24,7 +24,10 @@ namespace NoiseGraph
 
         public void OnBeforeSerialize()
         {
-            blackboard.storage = storage;
+            if (blackboard != null && storage != null)
+            {
+                blackboard.storage = storage;
+            }
         }
     }
 }
