@@ -1,11 +1,7 @@
-﻿Shader "Xnoise/ShaderNodeBase"
+﻿Shader "Xnoise/SphericalChecker"
 {
     Properties
     {
-        _Frequency("Frequency", Float) = 1
-        _Lacunarity("lacunarity", Float) = 1
-        _Persistence("Persistence", Float) = 1
-        _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
     }
@@ -21,8 +17,8 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-            //#include "../../noiseSimplex.cginc"
-            //#include "../../LibnoiseUtils.cginc"
+            #include "../../noiseSimplex.cginc"
+            #include "../../LibnoiseUtils.cginc"
 
             struct appdata
             {
@@ -48,16 +44,23 @@
                 return o;
             }
 
+            float ComputeChecker(float x, float y, float z)
+            {
+                int ix = (int)(floor(x));
+                int iy = (int)(floor(y));
+                int iz = (int)(floor(z));
+
+                return (ix & 1 ^ iy & 1 ^ iz & 1) != 0 ? -1.0 : 1.0;
+            }
+
             fixed4 frag(v2f i) : SV_Target
             {
-                // sample the texture
-                //float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
+                float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
 
-                //return GetPerlin(
-                //    val.x + _OffsetPosition.x,
-                //    val.y + _OffsetPosition.y,
-                //    val.z + _OffsetPosition.z) / 2 + 0.5f;
-                return 1.0;
+                return ComputeChecker(
+                    val.x + _OffsetPosition.x,
+                    val.y + _OffsetPosition.y,
+                    val.z + _OffsetPosition.z) / 2 + 0.5f;
             }
             ENDCG
         }

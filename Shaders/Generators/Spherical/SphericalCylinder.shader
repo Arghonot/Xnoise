@@ -1,14 +1,15 @@
-﻿Shader "Xnoise/Generators/Cylinder"
+﻿Shader "Xnoise/SphericalCylinder"
 {
     Properties
     {
-        _Frequency("Frequency",Float) = 0.0
-        _PositionX("PositionX",Float) = 0.0
-        _PositionY("PositionY",Float) = 0.0
+        _Frequency("Frequency", Float) = 1
+        _Radius("radius",Float) = 1.0
+        _OffsetPosition("Offset", Vector) = (0,0,0,0)
     }
-    SubShader
+        SubShader
     {
-        Cull Off ZWrite Off ZTest Always
+        Tags { "RenderType" = "Opaque" }
+        LOD 100
 
         Pass
         {
@@ -17,6 +18,8 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "../../noiseSimplex.cginc"
+            #include "../../LibnoiseUtils.cginc"
 
             struct appdata
             {
@@ -29,20 +32,20 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-
-            float _Frequency;
-            float _PositionX;
-            float _PositionY;
+            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            int _Radius;
+            float4 _OffsetPosition;
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
+
                 return o;
             }
 
-            float ComputeColor(float x, float y, float z)
+            float ComputeCylinder(float x, float y, float z)
             {
                 x *= _Frequency;
                 z *= _Frequency;
@@ -54,26 +57,15 @@
                 return 1.0 - (nd * 4.0);
             }
 
-            float4 GetSphericalCoordinatesRad(float Lnrad, float Latrad)
-            {
-                return float4(
-                    cos(Latrad) * sin(Lnrad),
-                    cos(Latrad) * cos(Lnrad),
-                    sin(Latrad),
-                    0);
-            }
-
             fixed4 frag(v2f i) : SV_Target
             {
-                float Ln = ((i.uv.x * 2) - 1) * 1.5708;
-                float Lat = ((i.uv.y * 2) - 1) * 1.5708;// 3.14159;
-                float4  Coordinates = GetSphericalCoordinatesRad(Ln, Lat);
+                // sample the texture
+                float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
 
-                float color = ComputeColor(Coordinates.x, Coordinates.y, Coordinates.z);
-
-                return float4(color, color, color, 1);
-
-                return 1;
+                return ComputeCylinder(
+                    val.x + _OffsetPosition.x,
+                    val.y + _OffsetPosition.y,
+                    val.z + _OffsetPosition.z) / 2 + 0.5f;
             }
             ENDCG
         }
