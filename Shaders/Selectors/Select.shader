@@ -1,10 +1,11 @@
-﻿Shader "Xnoise/Selectors/Blend"
+﻿Shader "Xnoise/Selectors/Select"
 {
     Properties
     {
         _TextureA("TextureA", 2D) = "white" {}
         _TextureB("TextureB", 2D) = "white" {}
         _TextureC("TextureC", 2D) = "white" {}
+        _FallOff("Falloff", Float) = 1
     }
         SubShader
     {
@@ -35,7 +36,7 @@
                 float4 vertex : SV_POSITION;
             };
 
-            float _fallOff;
+            float _FallOff, _raw, _min, _max;
             sampler2D _TextureA;
             float4 _TextureA_ST;
             sampler2D _TextureB;
@@ -66,72 +67,60 @@
                 return (value * value * (3.0 - 2.0 * value));
             }
 
-            float GetFallof(float value)
+            float GetValueSelect(float2 uv1, float2 uv2, float2 uv3)
             {
-                float bs = 1 - -1;
-                _raw = value;
+                _min = -1.0;
+                _max = 1.0;
+                float cv = tex2D(_TextureC, uv3);
 
-                if (value > bs / 2)
-                {
-                    _fallOff = bs / 2;
-                }
-                else
-                {
-                    _fallOff = value;
-                }
+                cv = cv * 2 - 1;
 
-                return _fallOff;
-            }
-
-            float GetValue(float2 uv1, float2 uv2, float2 uv3)
-            {
-                float cv = tex2D(_TextureC, i.uv3);
-                float _fallOff = 
-                if (_fallOff > 0.0)
+                if (_FallOff > 0.0)
                 {
-                    double a;
-                    if (cv < (_min - _fallOff))
+                    float a;
+                    if (cv < (_min - _FallOff))
                     {
-                        return tex2D(_TextureA, i.uv1);
+                        return tex2D(_TextureA, uv1);
                     }
-                    if (cv < (_min + _fallOff))
+                    if (cv < (_min + _FallOff))
                     {
-                        var lc = (_min - _fallOff);
-                        var uc = (_min + _fallOff);
+                        float lc = (_min - _FallOff);
+                        float uc = (_min + _FallOff);
                         a = MapCubicSCurve((cv - lc) / (uc - lc));
                         return InterpolateLinear(
-                            tex2D(_TextureA, i.uv1),
-                            tex2D(_TextureB, i.uv2),
+                            tex2D(_TextureA, uv1),
+                            tex2D(_TextureB, uv2),
                             a);
                     }
-                    if (cv < (_max - _fallOff))
+                    if (cv < (_max - _FallOff))
                     {
-                        return tex2D(_TextureB, i.uv2);
+                        return tex2D(_TextureB, uv2);
                     }
-                    if (cv < (_max + _fallOff))
+                    if (cv < (_max + _FallOff))
                     {
-                        var lc = (_max - _fallOff);
-                        var uc = (_max + _fallOff);
+                        float lc = (_max - _FallOff);
+                        float uc = (_max + _FallOff);
                         a = MapCubicSCurve((cv - lc) / (uc - lc));
                         return InterpolateLinear(
-                            tex2D(_TextureB, i.uv2),
-                            tex2D(_TextureA, i.uv1), a);
+                            tex2D(_TextureB, uv2),
+                            tex2D(_TextureA, uv1), a);
                     }
-                    return tex2D(_TextureA, i.uv1);
+                    return tex2D(_TextureA, uv1);
                 }
                 if (cv < _min || cv > _max)
                 {
-                    return tex2D(_TextureA, i.uv1);
+                    return 1.0;
+                    return tex2D(_TextureA, uv1);
                 }
-                return tex2D(_Textureb, i.uv2);
+                return tex2D(_TextureB, uv2);
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return InterpolateLinear(
-                    tex2D(_TextureA, i.uv1),
-                    tex2D(_TextureB, i.uv2),
-                    tex2D(_TextureC, i.uv3));
+                return GetValueSelect(
+                        i.uv1,
+                        i.uv2,
+                        i.uv3);
             }
             ENDCG
         }

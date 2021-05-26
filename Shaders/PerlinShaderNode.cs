@@ -8,7 +8,7 @@ namespace NoiseGraph
 {
     [CreateNodeMenu("Experimental/Generator/Perlin")]
     [NodeTint(Graph.ColorProfile.FlatBlue)]
-    public class PerlinShaderNode : LibnoiseNode
+    public class PerlinShaderNode : LibnoiseNodeGPU
     {
 
         public Material ShaderA;

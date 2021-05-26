@@ -3,10 +3,9 @@
     Properties
     {
         _Frequency("Frequency", Float) = 1
-        _Lacunarity("lacunarity", Float) = 1
-        _Persistence("Persistence", Float) = 1
+        _Lacunarity("Lacunarity", Float) = 1
         _Octaves("Octaves", Float) = 1
-        _Radius("radius",Float) = 1.0
+        _Radius("Radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
     }
         SubShader
@@ -35,7 +34,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            float _Frequency, _Lacunarity, _Octaves;
             int _Radius;
             float4 _OffsetPosition;
 

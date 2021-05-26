@@ -61,14 +61,14 @@ Material:
     - _Distance: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 1.14
+    - _Frequency: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Lacunarity: 2.21
+    - _Lacunarity: 2
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Octaves: 6
+    - _Octaves: 12
     - _Persistence: 0.59
     - _QueueOffset: 0
     - _Radius: 1

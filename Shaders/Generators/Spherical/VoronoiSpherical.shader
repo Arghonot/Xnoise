@@ -22,9 +22,9 @@ Shader "Xnoise/SphericalVoronoi"
     {
             _Permutations("Permutations", 2D) = "white" {}
             _Frequency("Frequency",Float) = 0.0
-            _Displacement("_Displacement",Float) = 0.0
-            _Radius("radius",Float) = 0.0
+            _Displacement("Displacement",Float) = 0.0
             _Distance("_Distance",Int) = 0
+            _Radius("Radius",Float) = 0.0
             _Seed("Seed",Int) = 42
     }
     Subshader
