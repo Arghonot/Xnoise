@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/SphericalPerlin"
+﻿Shader "Xnoise/Generators/SphericalPerlin"
 {
     Properties
     {

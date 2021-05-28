@@ -1,9 +1,8 @@
-﻿Shader "Xnoise/Generators/SphericalChecker"
+﻿Shader "Xnoise/Generators/Const"
 {
     Properties
     {
-        _Radius("radius",Float) = 1.0
-        _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Const("Const", Float) = 1
     }
         SubShader
     {
@@ -31,9 +30,8 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
-            int _Radius;
-            float4 _OffsetPosition;
+
+            float _Const;
 
             v2f vert(appdata v)
             {
@@ -44,23 +42,9 @@
                 return o;
             }
 
-            float ComputeChecker(float x, float y, float z)
-            {
-                int ix = (int)(floor(x));
-                int iy = (int)(floor(y));
-                int iz = (int)(floor(z));
-
-                return (ix & 1 ^ iy & 1 ^ iz & 1) != 0 ? -1.0 : 1.0;
-            }
-
             fixed4 frag(v2f i) : SV_Target
             {
-                float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
-
-                return ComputeChecker(
-                    val.x + _OffsetPosition.x,
-                    val.y + _OffsetPosition.y,
-                    val.z + _OffsetPosition.z) / 2 + 0.5f;
+                return _Const;
             }
             ENDCG
         }

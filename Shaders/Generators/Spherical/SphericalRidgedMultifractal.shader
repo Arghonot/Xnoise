@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/SphericalRidgedMultifractal"
+﻿Shader "Xnoise/Generators/SphericalRidgedMultifractal"
 {
     Properties
     {

@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/Generators/SphericalCylinder"
+﻿Shader "Xnoise/Generators/SphericalSpheres"
 {
     Properties
     {
@@ -32,7 +32,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            float _Frequency;
             int _Radius;
             float4 _OffsetPosition;
 
@@ -45,11 +45,12 @@
                 return o;
             }
 
-            float ComputeCylinder(float x, float y, float z)
+            float GetSpheres(float x, float y, float z)
             {
                 x *= _Frequency;
+                y *= _Frequency;
                 z *= _Frequency;
-                float dfc = sqrt(x * x + z * z);
+                float dfc = sqrt(x * x + y * y + z * z);
                 float dfss = dfc - floor(dfc);
                 float dfls = 1.0 - dfss;
                 float nd = min(dfss, dfls);
@@ -59,10 +60,9 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // sample the texture
                 float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
 
-                return ComputeCylinder(
+                return GetSpheres(
                     val.x + _OffsetPosition.x,
                     val.y + _OffsetPosition.y,
                     val.z + _OffsetPosition.z) / 2 + 0.5f;

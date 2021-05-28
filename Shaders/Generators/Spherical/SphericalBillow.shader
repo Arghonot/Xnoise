@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/SphericalBillow"
+﻿Shader "Xnoise/Generators/SphericalBillow"
 {
     Properties
     {
@@ -9,7 +9,7 @@
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
     }
-        SubShader
+    SubShader
     {
         Tags { "RenderType" = "Opaque" }
         LOD 100
@@ -35,6 +35,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
+
             float _Frequency, _Lacunarity, _Octaves, _Persistence;
             int _Radius;
             float4 _OffsetPosition;

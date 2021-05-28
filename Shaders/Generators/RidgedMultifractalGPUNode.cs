@@ -41,15 +41,15 @@ namespace NoiseGraph
             RidgedMultifractalShader.SetFloat("_Radius", Radius);
             Graphics.Blit(Texture2D.whiteTexture, rdB, RidgedMultifractalShader);
 
-            //UnityEngine.Debug.Log("Render texture Blit :" + watch.ElapsedMilliseconds);
-            //tex = new Texture2D(size, size / 2);
+            UnityEngine.Debug.Log("Render texture Blit :" + watch.ElapsedMilliseconds);
+            tex = new Texture2D(size, size / 2);
 
-            //UnityEngine.Debug.Log("Final texture creation :" + watch.ElapsedMilliseconds);
-            //tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
-            //UnityEngine.Debug.Log("Final texture just read pixels :" + watch.ElapsedMilliseconds);
+            UnityEngine.Debug.Log("Final texture creation :" + watch.ElapsedMilliseconds);
+            tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
+            UnityEngine.Debug.Log("Final texture just read pixels :" + watch.ElapsedMilliseconds);
 
-            //tex.Apply();
-            //UnityEngine.Debug.Log("Final texture apply() :" + watch.ElapsedMilliseconds);
+            tex.Apply();
+            UnityEngine.Debug.Log("Final texture apply() :" + watch.ElapsedMilliseconds);
 
             return rdB;
         }

@@ -22,8 +22,8 @@ float2 GetSphericalFromCartesian(float x, float y, float z)
 {
 	float r = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 
-	float ln = atan2(x,  y);
-	float lat = asin(z / r);
+	float ln = atan2(x, y) % 3.14159;
+	float lat = asin(z / r) % 1.5708;
 
 	return float2(ln, lat);
 }

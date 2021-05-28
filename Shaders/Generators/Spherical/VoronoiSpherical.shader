@@ -1,22 +1,7 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-//sampler2D _MainTex;
-//float4 _MainTex_ST;
-//float _persistence, _lacunarity, _frequency;
-//int _octave;
-//Properties
-//{
-//    _MainTex("Texture", 2D) = "white" {}
-//    _Frequency("Frequency",Float) = 0.0
-//    _Lacunarity("Lacunarity",Float) = 0.0
-//    _Octave("Octave",Int) = 6
-//    _Persistence("_Persistence",Float) = 0.0
-//}
-
-//2D Gradient Perlin Noise
+﻿//2D Gradient Perlin Noise
 //https://github.com/przemyslawzaworski/Unity3D-CG-programming
 
-Shader "Xnoise/SphericalVoronoi"
+Shader "Xnoise/Generators/SphericalVoronoi"
 {
     Properties
     {
