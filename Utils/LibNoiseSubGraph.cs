@@ -9,7 +9,7 @@ namespace NoiseGraph
         {
             if (SubGraph == null)
             {
-                return null;
+                return new SerializableModuleBase(0);
             }
 
             //SubGraph.storage = ((LibnoiseGraph)graph).storage;
