@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/Transformers/Translate"
+﻿Shader "Xnoise/Transformers/Rotate"
 {
     Properties
     {

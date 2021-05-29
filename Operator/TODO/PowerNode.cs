@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using LibNoise.Operator;
+using LibNoise;
 
 namespace NoiseGraph
 {

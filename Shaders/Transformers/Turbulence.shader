@@ -6,7 +6,6 @@
         _PerlinA("PerlinA", 2D) = "white" {}
         _PerlinB("PerlinB", 2D) = "white" {}
         _PerlinC("PerlinC", 2D) = "white" {}
-        _Control("Control", 2D) = "white" {}
         _Power("Power", Float) = 1
     }
         SubShader

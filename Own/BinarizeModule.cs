@@ -16,7 +16,7 @@ public class BinarizeModule : SerializableModuleBase
     /// Initializes a new instance of Invert.
     /// </summary>
     /// <param name="input">The input module.</param>
-    public BinarizeModule(ModuleBase input)
+    public BinarizeModule(LibNoise.SerializableModuleBase input)
         : base(1)
     {
         Modules[0] = input;

@@ -1,4 +1,6 @@
-﻿namespace NoiseGraph
+﻿using LibNoise;
+
+namespace NoiseGraph
 {
     [CreateNodeMenu("NoiseGraph/Graph/LibNoiseSubGraph")]
     public class LibNoiseSubGraph : Graph.SubGraphNode<SerializableModuleBase>
@@ -7,7 +9,7 @@
         {
             if (SubGraph == null)
             {
-                return new SerializableModuleBase(0);
+                return null;
             }
 
             //SubGraph.storage = ((LibnoiseGraph)graph).storage;

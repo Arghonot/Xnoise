@@ -1,4 +1,4 @@
-﻿Shader "Xnoise/Combiners/Substract"
+﻿Shader "Xnoise/Combiners/Subtract"
 {
     Properties
     {

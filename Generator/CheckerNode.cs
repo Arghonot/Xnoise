@@ -7,7 +7,7 @@ namespace NoiseGraph
     public class CheckerNode : LibnoiseNode
     {
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public ModuleBase GeneratorOutput;
+        public LibNoise.SerializableModuleBase GeneratorOutput;
 
         public override object Run()
         {

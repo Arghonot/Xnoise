@@ -1,6 +1,7 @@
 ﻿using Graph;
 using System.Linq;
 using UnityEngine;
+using LibNoise;
 
 namespace NoiseGraph
 {

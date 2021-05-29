@@ -23,7 +23,7 @@ namespace NoiseGraph
         public QualityMode Quality;
 
         [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public ModuleBase GeneratorOutput;
+        public LibNoise.SerializableModuleBase GeneratorOutput;
 
         public override object Run()
         {
