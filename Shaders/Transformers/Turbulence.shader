@@ -18,7 +18,6 @@
                 CGPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-
                 #include "UnityCG.cginc"
                 #include "../LibnoiseUtils.cginc"
 
