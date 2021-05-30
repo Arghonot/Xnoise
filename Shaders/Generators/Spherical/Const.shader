@@ -42,7 +42,9 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return _Const;
+                float color = _Const + 1 / 2;
+
+                return float4(color, color, color, 1);
             }
             ENDCG
         }

@@ -104,10 +104,12 @@
                 // sample the texture
                 float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
 
-                return GetRidgedMultifractal(
+                float color = GetRidgedMultifractal(
                     val.x + _OffsetPosition.x,
                     val.y + _OffsetPosition.y,
                     val.z + _OffsetPosition.z) / 2 + 0.5f;
+
+                return float4(color, color, color, 1);
             }
             ENDCG
         }

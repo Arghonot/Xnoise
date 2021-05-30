@@ -19,7 +19,7 @@ namespace Xnoise
 
             GUILayout.Space(5);
 
-            rend.size = EditorGUILayout.IntField("Size ", rend.size);
+            rend.width = EditorGUILayout.IntField("Size ", rend.width);
             GUILayout.Label("Render time (ms) : " + rend.RenderTime.ToString());
 
 

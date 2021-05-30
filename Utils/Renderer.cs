@@ -17,7 +17,8 @@ namespace Xnoise
         [SerializeField] public float north = -90.0f;
         [SerializeField] public float west = -180.0f;
         [SerializeField] public float east = 180.0f;
-        [SerializeField] public int size = 512;
+        [SerializeField] public int width = 512;
+        [SerializeField] public int Height = 0;
         [SerializeField] public Texture2D tex = null;
         [SerializeField] public Gradient grad = new Gradient();
 
@@ -37,8 +38,8 @@ namespace Xnoise
             watch.Start();
 
             Noise2D map = new Noise2D(
-                size,
-                size / 2, 
+                width,
+                Height == 0 ? width / 2 : Height, 
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 
             map.GenerateSpherical(
@@ -58,10 +59,10 @@ namespace Xnoise
         {
             Stopwatch watch = new Stopwatch();
 
-            tex = new Texture2D(size, size / 2);
+            tex = new Texture2D(width, width / 2);
 
             var rdB = GetInputValue<SerializableModuleBase>("Input", this.Input).GetSphericalValueGPU(
-                new Vector2(size, size / 20));
+                new Vector2(width, Height == 0 ? width / 2 : Height));
 
             tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
 

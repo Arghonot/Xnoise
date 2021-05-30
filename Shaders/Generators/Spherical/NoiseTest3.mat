@@ -70,11 +70,11 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Displacement: 2
-    - _Distance: 1
+    - _Displacement: 1
+    - _Distance: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 5
+    - _Frequency: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -86,7 +86,7 @@ Material:
     - _QueueOffset: 0
     - _Radius: 1
     - _ReceiveShadows: 1
-    - _Seed: 42
+    - _Seed: 13.88
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

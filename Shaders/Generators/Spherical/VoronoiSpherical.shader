@@ -148,7 +148,9 @@ Shader "Xnoise/Generators/SphericalVoronoi"
                 float2 uv = ps.worldPos;
                 float3 poss = GetSphericalCoordinatesRad(ps.uv.x, ps.uv.y, _Radius);
 
-                return (VoronoiGetValue(poss.x, poss.z, poss.y));
+                float color = (VoronoiGetValue(poss.x, poss.z, poss.y)) / 2 + 0.5f;
+
+                return float4(color, color, color, 1);
             }
 
             ENDCG
