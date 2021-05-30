@@ -2,7 +2,7 @@
 using LibNoise.Generator;
 using UnityEngine;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Generator/RidgedMultifractal")]
     public class RidgedMultifractalNode : LibnoiseNode

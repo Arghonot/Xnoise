@@ -5,7 +5,7 @@ using LibNoise;
 using System.Diagnostics;
 using System.IO;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("Experimental/Generator/SimpleShaderRenderer")]
     [NodeTint(Graph.ColorProfile.FlatBlue)]

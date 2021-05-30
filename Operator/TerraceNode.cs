@@ -3,7 +3,7 @@ using LibNoise;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Modifier/Terrace")]
     public class TerraceNode : LibnoiseNode

@@ -3,7 +3,7 @@ using LibNoise;
 
 using UnityEngine;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Modifier/Binarize")]
     public class BinarizeModuleNode : LibnoiseNode

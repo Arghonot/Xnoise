@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TransformerTest
-  m_Shader: {fileID: 4800000, guid: 6030217273f1af9458445fc06ea4726c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8430cd280334c994b916d53deec58214, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PerlinA:
-        m_Texture: {fileID: 2800000, guid: bac43a49483214d45a59d762f9e74f7b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 978017b59421595428e4440dc108771e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PerlinB:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PerlinC:
-        m_Texture: {fileID: 2800000, guid: 978017b59421595428e4440dc108771e, type: 3}
+        m_Texture: {fileID: 2800000, guid: c78f93af97fccb740984a25894917e55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureA:
-        m_Texture: {fileID: 2800000, guid: 4af22445c118de843b71933495a39616, type: 3}
+        m_Texture: {fileID: 2800000, guid: f745e3a1f8fc0ca4d9fc41c849097a46, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureB:
@@ -89,7 +89,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Power: 1
+    - _Power: 1.19
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5

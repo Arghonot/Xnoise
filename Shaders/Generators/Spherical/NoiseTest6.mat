@@ -68,14 +68,14 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 5
+    - _Frequency: 4.12
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Lacunarity: 4
+    - _Lacunarity: 2.3
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Octaves: 6
+    - _Octaves: 1
     - _Persistence: 77.84
     - _QueueOffset: 0
     - _Radius: 1
@@ -91,5 +91,5 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OffsetPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _OffsetPosition: {r: -6.75, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

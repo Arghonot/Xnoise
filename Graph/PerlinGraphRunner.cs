@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class PerlinGraphRunner : Graph.GraphRunner<NoiseGraph.LibnoiseGraph>
+public class PerlinGraphRunner : Graph.GraphRunner<Xnoise.XnoiseGraph>
 {
     public bool Gen;
     public float south = 90.0f;

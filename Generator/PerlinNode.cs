@@ -3,7 +3,7 @@ using LibNoise.Generator;
 using UnityEngine;
 using XNode;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Generator/Perlin")]
     public class PerlinNode : LibnoiseNode

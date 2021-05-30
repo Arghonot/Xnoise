@@ -95,7 +95,7 @@
                     float yd = y + (tex2D(_PerlinB, uvB) * _Power);
                     float zd = z + (tex2D(_PerlinC, uvC) * _Power);
 
-                    return tex2D(_PerlinC, GetUVFromPosition(xd, yd, zd));
+                    return tex2D(_TextureA, GetUVFromPosition(xd, yd, zd));
                 }
 
                 fixed4 frag(v2f i) : SV_Target

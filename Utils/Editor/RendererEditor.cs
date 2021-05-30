@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CustomNodeEditor(typeof(Renderer))]
     public class RendererEditor : NodeEditor
@@ -30,9 +30,13 @@ namespace NoiseGraph
                 GUI.DrawTexture(rend.TexturePosition, rend.tex);
             }
 
-            if (GUILayout.Button("Render"))
+            if (GUILayout.Button("Render - CPU"))
             {
-                rend.Render();
+                rend.RenderCPU();
+            }
+            if (GUILayout.Button("Render - GPU"))
+            {
+                rend.RenderGPU();
             }
             if (GUILayout.Button("Save"))
             {

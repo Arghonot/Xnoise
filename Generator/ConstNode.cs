@@ -5,7 +5,7 @@ using LibNoise;
 using LibNoise.Generator;
 using static XNode.Node;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Generator/Const")]
     public class ConstNode : LibnoiseNode

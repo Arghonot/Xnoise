@@ -5,9 +5,9 @@ using UnityEngine;
 using XNode;
 using XNodeEditor;
 
-namespace NoiseGraph
+namespace Xnoise
 {
-    [CustomNodeGraphEditor(typeof(LibnoiseGraph))]
+    [CustomNodeGraphEditor(typeof(XnoiseGraph))]
     public class LibnoiseGraphEditor : XNodeEditor.NodeGraphEditor
     {
         // TODO find a way to make this inherit generic node graph editor as well
@@ -23,7 +23,7 @@ namespace NoiseGraph
 
         public override void RemoveNode(Node node)
         {
-            if (node != ((LibnoiseGraph)target).blackboard &&
+            if (node != ((XnoiseGraph)target).blackboard &&
                 !node.GetType().ToString().Contains("Root"))
             {
                 base.RemoveNode(node);
@@ -32,7 +32,7 @@ namespace NoiseGraph
 
         public override Texture2D GetGridTexture()
         {
-            NodeEditorWindow.current.titleContent = new GUIContent(((LibnoiseGraph)target).name);
+            NodeEditorWindow.current.titleContent = new GUIContent(((XnoiseGraph)target).name);
 
             return base.GetGridTexture();
         }
@@ -53,7 +53,7 @@ namespace NoiseGraph
         {
             base.OnCreate();
 
-            LibnoiseGraph graph = target as LibnoiseGraph;
+            XnoiseGraph graph = target as XnoiseGraph;
             NodeEditorWindow.current.graphEditor = this;
 
             if (graph.blackboard == null)

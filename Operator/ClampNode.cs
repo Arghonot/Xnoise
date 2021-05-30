@@ -2,7 +2,7 @@
 using LibNoise;
 using UnityEngine;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Modifier/Clamp")]
     public class ClampNode : LibnoiseNode

@@ -3,10 +3,10 @@ using System.Linq;
 using UnityEngine;
 using LibNoise;
 
-namespace NoiseGraph
+namespace Xnoise
 {
-    [CreateAssetMenu(fileName = "libnoiseGraph", menuName = "Graphs/libnoiseGraph", order = 2)]
-    public class LibnoiseGraph : DefaultGraph, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName = "XnoiseGraph", menuName = "Graphs/XnoiseGraph", order = 2)]
+    public class XnoiseGraph : DefaultGraph, ISerializationCallbackReceiver
     {
         public SerializableModuleBase GetGenerator(GraphVariableStorage newstorage = null)
         {

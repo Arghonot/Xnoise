@@ -1,6 +1,6 @@
 ﻿using LibNoise;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Graph/LibNoiseSubGraph")]
     public class LibNoiseSubGraph : Graph.SubGraphNode<SerializableModuleBase>
@@ -14,7 +14,7 @@ namespace NoiseGraph
 
             //SubGraph.storage = ((LibnoiseGraph)graph).storage;
 
-            return ((RootModuleBase)((LibnoiseGraph)SubGraph).root).Run();
+            return ((RootModuleBase)((XnoiseGraph)SubGraph).root).Run();
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using XNode;
 using System.IO;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Debug/Render")]
     [NodeTint(Graph.ColorProfile.Debug)]
@@ -30,7 +30,7 @@ namespace NoiseGraph
 
         public long RenderTime;
 
-        public void Render()
+        public void RenderCPU()
         {
             Stopwatch watch = new Stopwatch();
 
@@ -48,6 +48,23 @@ namespace NoiseGraph
                 east);
 
             tex = map.GetTexture(grad);
+            tex.Apply();
+
+            watch.Stop();
+            RenderTime = watch.ElapsedMilliseconds;
+        }
+
+        public void RenderGPU()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            tex = new Texture2D(size, size / 2);
+
+            var rdB = GetInputValue<SerializableModuleBase>("Input", this.Input).GetSphericalValueGPU(
+                new Vector2(size, size / 20));
+
+            tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
+
             tex.Apply();
 
             watch.Stop();

@@ -2,7 +2,7 @@
 using LibNoise;
 using UnityEngine;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Transformer/Displace")]
     public class DisplaceNode : LibnoiseNode

@@ -2,7 +2,7 @@
 using LibNoise.Operator;
 using LibNoise;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Combiner/Max")]
     public class MaxNode : LibnoiseNode

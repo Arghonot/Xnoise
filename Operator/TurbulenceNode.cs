@@ -2,7 +2,7 @@
 using UnityEngine;
 using LibNoise;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     [CreateNodeMenu("NoiseGraph/Transformer/Turbulence")]
     public class TurbulenceNode : LibnoiseNode

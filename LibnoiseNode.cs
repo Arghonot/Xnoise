@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LibNoise;
 
-namespace NoiseGraph
+namespace Xnoise
 {
     /// <summary>
     /// A default class with a generic output node.
