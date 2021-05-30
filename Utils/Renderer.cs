@@ -59,13 +59,11 @@ namespace Xnoise
         {
             Stopwatch watch = new Stopwatch();
 
-            tex = new Texture2D(width, width / 2);
-
             var rdB = GetInputValue<SerializableModuleBase>("Input", this.Input).GetSphericalValueGPU(
                 new Vector2(width, Height == 0 ? width / 2 : Height));
 
+            tex = new Texture2D(rdB.width, rdB.height);
             tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
-
             tex.Apply();
 
             watch.Stop();

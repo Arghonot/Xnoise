@@ -29,22 +29,22 @@ namespace Xnoise
             return curveTexture;
         }
 
-        public static Texture2D GetDoubleArrayAsTexture(double[] array)
-        {
-            Texture2D curveTexture = new Texture2D(TextureSize, 1);
-            float currentValue = 0f;
-            AnimationCurve curve = new AnimationCurve();
+        //public static Texture2D GetDoubleArrayAsTexture(double[] array)
+        //{
+        //    //Texture2D curveTexture = new Texture2D(TextureSize, 1, UnityEngine.Experimental.Rendering.DefaultFormat.LDR, 
+        //    //float currentValue = 0f;
+        //    //AnimationCurve curve = new AnimationCurve();
 
-            for (int i = 0; i < TextureSize; i++)
-            {
-                //currentValue = curve.Evaluate(Mathf.Lerp(-1f, 1f, (float)i / (float)TextureSize)) + 1f / 2f;
-                curveTexture.SetPixel(i, 0, new Color(currentValue, currentValue, currentValue));
-            }
+        //    //for (int i = 0; i < TextureSize; i++)
+        //    //{
+        //    //    //currentValue = curve.Evaluate(Mathf.Lerp(-1f, 1f, (float)i / (float)TextureSize)) + 1f / 2f;
+        //    //    curveTexture.SetPixel(i, 0, new Color(currentValue, currentValue, currentValue));
+        //    //}
 
-            curveTexture.Apply();
+        //    //curveTexture.Apply();
 
-            return curveTexture;
-        }
+        //    //return curveTexture;
+        //}
 
         public static Texture2D GetGradientAsTexture(Gradient gradient)
         {

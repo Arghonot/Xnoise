@@ -50,7 +50,9 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return GetValueInvert(tex2D(_TextureA, i.uv));
+                float color = GetValueInvert(tex2D(_TextureA, i.uv));
+
+                return float4(color, color, color, 1);
             }
             ENDCG
         }

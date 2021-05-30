@@ -145,10 +145,10 @@ Shader "Xnoise/Generators/SphericalVoronoi"
 
             float4 pixel_shader(v2f ps) : SV_TARGET
             {
-                float2 uv = ps.worldPos;
-                float3 poss = GetSphericalCoordinatesRad(ps.uv.x, ps.uv.y, _Radius);
+                float2 uv = ps.uv;
+                float3 pos = GetCartesianFromUV(ps.uv.x, ps.uv.y, _Radius);
 
-                float color = (VoronoiGetValue(poss.x, poss.z, poss.y)) / 2 + 0.5f;
+                float color = (VoronoiGetValue(pos.x, pos.z, pos.y)) / 2 + 0.5f;
 
                 return float4(color, color, color, 1);
             }

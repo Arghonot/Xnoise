@@ -1,0 +1,8 @@
++Scale
+	-Doesn't sample at other 3d coordinates but resample the same texture at different longitudes/latitudes
++Turbulence
+	-Doesn't sample 3d perlin directly but resample the texture at another coordinate (might change this later)
++Terrace
+	-Code it
++Curve
+	-Fix it

@@ -55,12 +55,12 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float3 val = GetSphericalCoordinatesRad(i.uv.x, i.uv.y, _Radius);
+                float3 pos = GetCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
                 float color = ComputeChecker(
-                    val.x + _OffsetPosition.x,
-                    val.y + _OffsetPosition.y,
-                    val.z + _OffsetPosition.z) / 2 + 0.5f;
+                    pos.x + _OffsetPosition.x,
+                    pos.y + _OffsetPosition.y,
+                    pos.z + _OffsetPosition.z) / 2 + 0.5f;
 
                 return float4(color, color, color, 1);
             }

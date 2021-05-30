@@ -100,9 +100,9 @@
 
                 fixed4 frag(v2f i) : SV_Target
                 {
-                    float3 pos = GetSphericalCoordinatesRad(i.uv1.x, i.uv1.y, 1);
+                    float3 pos = GetCartesianFromUV(i.uv1.x, i.uv1.y, 1);
 
-                    float val = GetTurbulence(
+                    float color = GetTurbulence(
                             i.uv1,
                             i.uv2,
                             i.uv3,
@@ -110,7 +110,7 @@
                             pos.y,
                             pos.z);
 
-                    return float4(val, val, val, val);
+                    return float4(color, color, color, 1);
                 }
                 ENDCG
             }

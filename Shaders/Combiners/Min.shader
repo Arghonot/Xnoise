@@ -47,7 +47,9 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return min(tex2D(_TextureA, i.uv), tex2D(_TextureB, i.uv));
+                float color = min(tex2D(_TextureA, i.uv), tex2D(_TextureB, i.uv));
+
+                return float4(color, color, color, 1);
             }
             ENDCG
         }

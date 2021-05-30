@@ -84,9 +84,9 @@ Material:
     - _Octaves: 0.79
     - _Persistence: 15.54
     - _QueueOffset: 0
-    - _Radius: 1
+    - _Radius: 2.13
     - _ReceiveShadows: 1
-    - _Seed: 13.88
+    - _Seed: 112
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

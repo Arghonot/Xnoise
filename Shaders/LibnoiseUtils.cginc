@@ -3,7 +3,7 @@
 
 // --- to calculate 3d coordinates from uvs
 
-float3 GetSphericalCoordinatesRad(float Ln, float Lat, float radius)
+float3 GetCartesianFromUV(float Ln, float Lat, float radius)
 {
 	Ln *= 360;
 	Lat *= 180;

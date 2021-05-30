@@ -117,10 +117,12 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return GetValueSelect(
+                float color = GetValueSelect(
                         i.uv1,
                         i.uv2,
                         i.uv3);
+
+                return float4(color, color, color, 1);
             }
             ENDCG
         }
