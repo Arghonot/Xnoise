@@ -15,21 +15,28 @@ namespace Xnoise
         public AnimationCurve InputCurve;
 
         public Texture2D animCurve;
+        public Texture2D InputTexture;
 
         public override object Run()
         {
             Curve curve = new Curve(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 
+            var rt = GetInputValue<SerializableModuleBase>("Input", this.Input).GetSphericalValueGPU(Vector2.one * 512);
+
+            InputTexture = new Texture2D(rt.width, rt.height);
+            InputTexture.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+            InputTexture.Apply();
+
             curve.SetCurve(InputCurve);
             animCurve = UtilsFunctions.GetCurveAsTexture(InputCurve);
 
             UtilsFunctions.SaveImage(animCurve, "curve");
 
-            //foreach (var point in InputCurve.keys)
-            //{
-            //    curve.Add(point.time, point.value);
-            //}
+            foreach (var point in InputCurve.keys)
+            {
+                curve.Add(point.time, point.value);
+            }
 
             return curve;
         }

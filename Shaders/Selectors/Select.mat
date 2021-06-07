@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureA:
-        m_Texture: {fileID: 2800000, guid: 6e74614a77158b24c8aafe74a3614fe2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5d6155ef976786f449f1f102ab6cd533, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureB:
@@ -68,7 +68,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FallOf: 1
-    - _FallOff: 1.41
+    - _FallOff: 1.45
     - _Fallof: 9.62
     - _GlossMapScale: 0
     - _Glossiness: 0

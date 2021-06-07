@@ -14,7 +14,6 @@ namespace Xnoise
         {
             return new Exponent(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
-
         }
     }
 }

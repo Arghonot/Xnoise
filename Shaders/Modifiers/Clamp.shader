@@ -46,14 +46,14 @@
             }
 
 
-            float clamp(float value)
+            float GetClamp(float value)
             {
                 return clamp(value * 2 - 1, _Minimum, _Maximum);
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float color = clamp(tex2D(_TextureA, i.uv));
+                float color = GetClamp(tex2D(_TextureA, i.uv));
 
                 return float4(color, color, color, 1);
             }

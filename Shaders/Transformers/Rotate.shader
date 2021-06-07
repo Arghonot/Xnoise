@@ -55,13 +55,39 @@
 
                 float GetRotate(float x, float y, float z)
                 {
-                    float nx = x + _X;
-                    float ny = y + _Y;
-                    float nz = z + _Z;
+                    float xCos, yCos, zCos, xSin, ySin, zSin;
 
+                    xCos = cos(_X * 0.01745329251);
+                    yCos = cos(_Y * 0.01745329251);
+                    zCos = cos(_Z * 0.01745329251);
+                    xSin = sin(_X * 0.01745329251);
+                    ySin = sin(_Y * 0.01745329251);
+                    zSin = sin(_Z * 0.01745329251);
+
+                    float m_x1Matrix = ySin * xSin * zSin + yCos * zCos;
+                    float m_y1Matrix = xCos * zSin;
+                    float m_z1Matrix = ySin * zCos - yCos * xSin * zSin;
+                    float m_x2Matrix = ySin * xSin * zCos - yCos * zSin;
+                    float m_y2Matrix = xCos * zCos;
+                    float m_z2Matrix = -yCos * xSin * zCos - ySin * zSin;
+                    float m_x3Matrix = -ySin * xCos;
+                    float m_y3Matrix = xSin;
+                    float m_z3Matrix = yCos * xCos;
+
+                    float nx = (m_x1Matrix * x) + (m_y1Matrix * y) + (m_z1Matrix * z);
+                    float ny = (m_x2Matrix * x) + (m_y2Matrix * y) + (m_z2Matrix * z);
+                    float nz = (m_x3Matrix * x) + (m_y3Matrix * y) + (m_z3Matrix * z);
                     float3 normalized = normalize(float3(nx, ny, nz));
                     float2 FinalLnLat = GetSphericalFromCartesian(normalized.x, normalized.y, normalized.z);
                     float2 FinalUV = GetUVFromSpherical(FinalLnLat.x, FinalLnLat.y);
+
+                    //float nx = x + _X;
+                    //float ny = y + _Y;
+                    //float nz = z + _Z;
+
+                    //float3 normalized = normalize(float3(nx, ny, nz));
+                    //float2 FinalLnLat = GetSphericalFromCartesian(normalized.x, normalized.y, normalized.z);
+                    //float2 FinalUV = GetUVFromSpherical(FinalLnLat.x, FinalLnLat.y);
 
                     return tex2D(_TextureA, FinalUV);
                 }
