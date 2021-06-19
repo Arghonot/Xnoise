@@ -22,22 +22,19 @@ namespace Xnoise
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public QualityMode Quality;
 
-        [Output(ShowBackingValue.Always, ConnectionType.Multiple, TypeConstraint.Strict)]
-        public LibNoise.SerializableModuleBase GeneratorOutput;
-
         public override object Run()
         {
             // if editing the graph -> we stick to current variables
-            if (Application.isEditor && !Application.isPlaying)
-            {
-                return new Billow(
-                    this.frequency,
-                    this.lacunarity,
-                    this.persistence,
-                    this.Octaves,
-                    this.Seed,
-                    this.Quality);
-            }
+            //if (Application.isEditor && !Application.isPlaying)
+            //{
+            //    return new Billow(
+            //        this.frequency,
+            //        this.lacunarity,
+            //        this.persistence,
+            //        this.Octaves,
+            //        this.Seed,
+            //        this.Quality);
+            //}
 
             return new Billow(
                 GetInputValue<double>("frequency", this.frequency),

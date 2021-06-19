@@ -74,7 +74,7 @@ Material:
     - _Distance: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 1
+    - _Frequency: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -86,7 +86,7 @@ Material:
     - _QueueOffset: 0
     - _Radius: 2.13
     - _ReceiveShadows: 1
-    - _Seed: 112
+    - _Seed: 74.17
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
