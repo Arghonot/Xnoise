@@ -68,17 +68,17 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 4.12
+    - _Frequency: 1.27
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Lacunarity: 2.3
+    - _Lacunarity: 1.18
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Octaves: 1
+    - _Octaves: 4.58
     - _Persistence: 77.84
     - _QueueOffset: 0
-    - _Radius: 1
+    - _Radius: 1.39
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

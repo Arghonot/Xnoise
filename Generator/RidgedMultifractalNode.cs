@@ -20,16 +20,16 @@ namespace Xnoise
 
         public override object Run()
         {
-            // if editing the graph -> we stick to current variables
-            if (Application.isEditor && !Application.isPlaying)
-            {
-                return new RidgedMultifractal(
-                    this.frequency,
-                    this.lacunarity,
-                    this.Octaves,
-                    this.Seed,
-                    (QualityMode)this.Quality);
-            }
+            //// if editing the graph -> we stick to current variables
+            //if (Application.isEditor && !Application.isPlaying)
+            //{
+            //    return new RidgedMultifractal(
+            //        this.frequency,
+            //        this.lacunarity,
+            //        this.Octaves,
+            //        this.Seed,
+            //        (QualityMode)this.Quality);
+            //}
 
             return new RidgedMultifractal(
                 GetInputValue<double>("frequency", this.frequency),

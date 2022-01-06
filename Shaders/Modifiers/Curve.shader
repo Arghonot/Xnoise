@@ -50,7 +50,7 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float color = clamp(0, 1, tex2D(_Curve, float2(tex2D(_MainTex, i.uv).x, 0)) +1 / 2);
+                float color = clamp(0, 1, tex2D(_Curve, float2(tex2D(_MainTex, i.uv).x, 0)));// +(1 / 2));
 
                 return float4(color, color, color, 1);
             }

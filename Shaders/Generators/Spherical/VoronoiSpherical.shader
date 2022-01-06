@@ -145,6 +145,7 @@ Shader "Xnoise/Generators/SphericalVoronoi"
 
             float4 pixel_shader(v2f ps) : SV_TARGET
             {
+                _Radius = _Frequency;
                 float2 uv = ps.uv;
                 float3 pos = GetCartesianFromUV(ps.uv.x, ps.uv.y, _Radius);
 
