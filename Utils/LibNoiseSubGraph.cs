@@ -7,14 +7,12 @@ namespace Xnoise
     {
         public override object Run()
         {
-            if (SubGraph == null)
+            if (targetSubGraph == null)
             {
                 return new SerializableModuleBase(0);
             }
 
-            //SubGraph.storage = ((LibnoiseGraph)graph).storage;
-
-            return ((RootModuleBase)((XnoiseGraph)SubGraph).root).Run();
+            return ((XnoiseGraph)targetSubGraph).Run(GenerateProperStorage());
         }
     }
 }

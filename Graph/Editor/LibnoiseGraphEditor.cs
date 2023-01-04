@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphEditor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ using XNodeEditor;
 namespace Xnoise
 {
     [CustomNodeGraphEditor(typeof(XnoiseGraph))]
-    public class LibnoiseGraphEditor : XNodeEditor.NodeGraphEditor
+    public class LibnoiseGraphEditor : DefaultGraphEditor
     {
         // TODO find a way to make this inherit generic node graph editor as well
         // perhaps use attribute Don't show in dialogue
@@ -63,11 +64,18 @@ namespace Xnoise
                 graph.blackboard.InitializeBlackboard();
             }
             
-            if (graph.root == null)
+            // we do not want to have two outputs
+            if (graph.root == null && ContainsNodeOfType(typeof(RootModuleBase)) != null)
             {
-                var root = CreateNode(typeof(RootModuleBase), new Vector2(0, 0));
+                graph.root = (RootModuleBase)ContainsNodeOfType(typeof(RootModuleBase));
+            }
+            else if (graph.root == null)
+            {
+                var root = CreateNode(typeof(RootModuleBase), new Vector2(500, 150));
                 graph.root = root as RootModuleBase;
             }
         }
+
+
     }
 }

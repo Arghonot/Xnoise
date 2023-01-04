@@ -27,7 +27,7 @@ namespace Xnoise
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
-        public Rect TexturePosition = new Rect(14, 225, 180, 90);
+        public Rect TexturePosition = new Rect(14, 270, 180, 90);
 
         public long RenderTime;
 

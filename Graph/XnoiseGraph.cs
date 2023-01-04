@@ -12,7 +12,7 @@ namespace Xnoise
         {
             if (newstorage != null)
             {
-                this.storage = newstorage;
+                this.originalStorage = newstorage;
             }
 
             return (SerializableModuleBase)root.GetValue(root.Ports.First());
@@ -25,9 +25,9 @@ namespace Xnoise
 
         public void OnBeforeSerialize()
         {
-            if (blackboard != null && storage != null)
+            if (blackboard != null && originalStorage != null)
             {
-                blackboard.storage = storage;
+                blackboard.storage = originalStorage;
             }
         }
     }

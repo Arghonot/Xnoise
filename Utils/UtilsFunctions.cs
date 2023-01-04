@@ -29,6 +29,23 @@ namespace Xnoise
             return curveTexture;
         }
 
+        public static Texture2D GetTerracePointListAsTexture(List<double> _data)
+        {
+            Texture2D pointList = new Texture2D(_data.Count + 1, 1);
+
+            pointList.SetPixel(0, 0, new Color(((float)_data.Count) / 255f, 0, 0));
+
+            for (int i = 1; i < _data.Count + 1; i++)
+            {
+                pointList.SetPixel(i, 0, new Color((((float)_data[i - 1] + 1f) / 2f), 0f, 0f));
+                Debug.Log("<color=red>Pixel " + i + " is of colour : " + ((((float)_data[i - 1] + 1f) / 2f)) + "</color>");
+            }
+
+            pointList.Apply();
+
+            return pointList;
+        }
+
         //public static Texture2D GetDoubleArrayAsTexture(double[] array)
         //{
         //    //Texture2D curveTexture = new Texture2D(TextureSize, 1, UnityEngine.Experimental.Rendering.DefaultFormat.LDR, 

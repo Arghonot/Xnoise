@@ -127,8 +127,8 @@ Shader "Xnoise/Generators/SphericalVoronoi"
                     float xDist = xCandidate - x;
                     float yDist = yCandidate - y;
                     float zDist = zCandidate - z;
-                    value = (sqrt(xDist * xDist + yDist * yDist + zDist * zDist)
-                        ) * 1.73205080757 - 1.0;
+                    value = 1 - (sqrt(xDist * xDist + yDist * yDist + zDist * zDist)
+                        ) * 1.73205080757;
                 }
                 else 
                 {
