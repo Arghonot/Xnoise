@@ -45,7 +45,7 @@
 
             float GetValueAbs(float value)
             {
-                return abs(value * 2 - 1);
+                return abs((value * 2) - 1);
             }
 
             fixed4 frag(v2f i) : SV_Target

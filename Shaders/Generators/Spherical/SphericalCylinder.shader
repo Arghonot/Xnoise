@@ -51,7 +51,7 @@
                 z *= _Frequency;
                 float dfc = sqrt(x * x + z * z);
                 float dfss = dfc - floor(dfc);
-                float dfls = 1.0 - dfss;
+                float dfls = /*1.0 - */dfss;
                 float nd = min(dfss, dfls);
 
                 return 1.0 - (nd * 4.0);

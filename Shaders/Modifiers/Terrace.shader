@@ -105,7 +105,7 @@
                 float res = 0;
 
                 //return amount;// / 125;
-                return float4(indexes, 0, 1);
+                return float4(indexes.x, indexes.x, indexes.x, 1);
                 indexes = float2(
                     clamp(indexes.x, 0, amount),
                     clamp(indexes.y, 0, amount));
@@ -127,8 +127,8 @@
 
                 //res = ((1.0 - alpha) * value0) + (alpha * value1);
                 res = InterpolateLinear(value0, value1, alpha) + 1;
-
-                return float4(res * 255, 0, 0, 1);
+                //res *= 255;
+                return float4(res, res, res, 1);
             }
             ENDCG
         }

@@ -39,10 +39,12 @@ namespace Xnoise
 
             UtilsFunctions.SaveImage(animCurve, "curve");
 
-            foreach (var point in InputCurve.keys)
-            {
-                curve.Add(point.time, point.value);
-            }
+            curve.mathematicalCurve = InputCurve;
+
+            //foreach (var point in InputCurve.keys)
+            //{
+            //    curve.Add(point.time, point.value);
+            //}
 
             return curve;
         }

@@ -94,7 +94,7 @@
                 // sample the texture
                 float3 pos = GetCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
-                float color = GetBillow(
+                float color = 1 - GetBillow(
                     pos.x + _OffsetPosition.x,
                     pos.y + _OffsetPosition.y,
                     pos.z + _OffsetPosition.z) / 2 + 0.5f;

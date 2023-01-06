@@ -51,6 +51,9 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
+                //float a = (tex2D(_TextureA, i.uv1) * 2) - 1;
+                //float b = (tex2D(_TextureB, i.uv2) * 2) - 1;
+                //return 1 - clamp(pow(a, b)) + 1 / 2;
                 return pow(tex2D(_TextureA, i.uv1), tex2D(_TextureB, i.uv2));
             }
             ENDCG

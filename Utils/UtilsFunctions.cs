@@ -37,7 +37,8 @@ namespace Xnoise
 
             for (int i = 1; i < _data.Count + 1; i++)
             {
-                pointList.SetPixel(i, 0, new Color((((float)_data[i - 1] + 1f) / 2f), 0f, 0f));
+                float channelValue = ((float)_data[i - 1] + 1f) / 2f;
+                pointList.SetPixel(i, 0, new Color(channelValue, channelValue, channelValue, 1f));
                 Debug.Log("<color=red>Pixel " + i + " is of colour : " + ((((float)_data[i - 1] + 1f) / 2f)) + "</color>");
             }
 
