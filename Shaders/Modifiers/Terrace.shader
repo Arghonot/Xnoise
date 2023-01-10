@@ -94,40 +94,42 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                //fixed4 col = tex2D(_MainTex, i.uv);
-                int amount = GetAmountOfPoints(i);
-                float2 indexes = getClosestPoints(i);
-                float sourceModuleValue = tex2D(_MainTex, i.uv);
-                float value0 = 0;
-                float value1 = 0;
-                float alpha = 0;
-                float res = 0;
+                float res = tex2D(_Terrace, float2(tex2D(_MainTex, i.uv).x, 0));// 
 
-                //return amount;// / 125;
-                return float4(indexes.x, indexes.x, indexes.x, 1);
-                indexes = float2(
-                    clamp(indexes.x, 0, amount),
-                    clamp(indexes.y, 0, amount));
+                //// sample the texture
+                ////fixed4 col = tex2D(_MainTex, i.uv);
+                //int amount = GetAmountOfPoints(i);
+                //float2 indexes = getClosestPoints(i);
+                //float sourceModuleValue = tex2D(_MainTex, i.uv);
+                //float value0 = 0;
+                //float value1 = 0;
+                //float alpha = 0;
+                //float res = 0;
 
-                //if (indexes.x == indexes.y)
-                //{
-                //    res = getValueFrom(i, indexes.x);
+                ////return amount;// / 125;
+                //return float4(indexes.x, indexes.x, indexes.x, 1);
+                //indexes = float2(
+                //    clamp(indexes.x, 0, amount),
+                //    clamp(indexes.y, 0, amount));
 
-                //    return float4(0, res, 0, 1);
-                //}
+                ////if (indexes.x == indexes.y)
+                ////{
+                ////    res = getValueFrom(i, indexes.x);
 
-                //return float4(0, tex2D(_Terrace, float2(_Radius, 0)).x, 0, 1);
+                ////    return float4(0, res, 0, 1);
+                ////}
 
-                value0 = getValueFromPoint(i, indexes.x);
-                value1 = getValueFromPoint(i, indexes.y);
+                ////return float4(0, tex2D(_Terrace, float2(_Radius, 0)).x, 0, 1);
 
-                alpha = (sourceModuleValue - value0) / (value1 - value0);
-                alpha *= alpha;
+                //value0 = getValueFromPoint(i, indexes.x);
+                //value1 = getValueFromPoint(i, indexes.y);
 
-                //res = ((1.0 - alpha) * value0) + (alpha * value1);
-                res = InterpolateLinear(value0, value1, alpha) + 1;
-                //res *= 255;
+                //alpha = (sourceModuleValue - value0) / (value1 - value0);
+                //alpha *= alpha;
+
+                ////res = ((1.0 - alpha) * value0) + (alpha * value1);
+                //res = InterpolateLinear(value0, value1, alpha) + 1;
+                ////res *= 255;
                 return float4(res, res, res, 1);
             }
             ENDCG

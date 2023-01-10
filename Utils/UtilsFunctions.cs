@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+// TODO move to libnoise port instead as some nodes need it
 namespace Xnoise
 {
     public static class UtilsFunctions
@@ -16,11 +17,11 @@ namespace Xnoise
 
             for (int i = 0; i < TextureSize; i++)
             {
-                currentValue = Mathf.Clamp(
+                currentValue = (Mathf.Clamp(
                     curve.Evaluate(
                         Mathf.Lerp(-1f, 1f, (float)i / (float)TextureSize)),
                         -1f,
-                        1f) + 1f / 2f;
+                        1f) + 1f) / 2f;
                 curveTexture.SetPixel(i, 0, new Color(currentValue, currentValue, currentValue));
             }
 

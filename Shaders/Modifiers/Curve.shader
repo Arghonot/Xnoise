@@ -46,6 +46,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 float color = tex2D(_Curve, float2(tex2D(_MainTex, i.uv).x, 0));// +(1 / 2));//max(tex2D(_MainTex, i.uv), tex2D(_Curve, i.uv));
+                //color = 0.0;
                 return float4(color, color, color, 1);
             }
             ENDCG

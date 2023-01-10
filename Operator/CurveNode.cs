@@ -26,7 +26,7 @@ namespace Xnoise
             Curve curve = new Curve(
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
 
-            curve.mathematicalCurve = InputCurve;
+            curve.mathematicalCurve = GetInputValue<AnimationCurve>("InputCurve", this.InputCurve);
             curve.SetCurve(animCurve);//UtilsFunctions.GetCurveAsTexture(InputCurve));
             gpuMaterial = curve._materialGPU;
 
