@@ -8,6 +8,7 @@
         _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Seed("Seed", Float) = 1
     }
     SubShader
     {
@@ -35,7 +36,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            float _Frequency, _Lacunarity, _Octaves, _Persistence, _Seed;
             int _Radius;
             float4 _OffsetPosition;
 
@@ -72,7 +73,7 @@
                     // final result.
                     //seed = (m_seed + curOctave) & 0xffffffff;
                     //signal = GradientCoherentNoise3D(nx, ny, nz, seed, 1);
-                    signal = snoise(float3(nx, ny, nz));
+                    signal = snoise(float3(nx +_Seed, ny + _Seed, nz + _Seed));
                     value += signal * curPersistence;
 
                     // Prepare the next octave.
@@ -90,10 +91,10 @@
                 // sample the texture
                 float3 val = GetCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
-                float color = GetPerlin(
+                float color = (GetPerlin(
                     val.x + _OffsetPosition.x,
                     val.y + _OffsetPosition.y,
-                    val.z + _OffsetPosition.z) / 2 + 0.5f;
+                    val.z + _OffsetPosition.z) + 1.0 )/ 2.0;
 
                 return float4(color, color, color, 1);
             }

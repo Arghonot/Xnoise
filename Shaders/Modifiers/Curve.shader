@@ -2,13 +2,13 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex("MainTex", 2D) = "white" {}
         _Curve("Curve", 2D) = "white" {}
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
 
         Pass
         {
@@ -22,13 +22,11 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
-                float2 uv1 : TEXCOORD1;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                float2 uv1 : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
@@ -40,18 +38,14 @@
             v2f vert (appdata v)
             {
                 v2f o;
-
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.uv1 = TRANSFORM_TEX(v.uv1, _Curve);
-
+                o.uv = v.uv;
                 return o;
             }
 
-            fixed4 frag(v2f i) : SV_Target
+            fixed4 frag (v2f i) : SV_Target
             {
-                float color = clamp(0, 1, tex2D(_Curve, float2(tex2D(_MainTex, i.uv).x, 0)));// +(1 / 2));
-
+                float color = tex2D(_Curve, float2(tex2D(_MainTex, i.uv).x, 0));// +(1 / 2));//max(tex2D(_MainTex, i.uv), tex2D(_Curve, i.uv));
                 return float4(color, color, color, 1);
             }
             ENDCG

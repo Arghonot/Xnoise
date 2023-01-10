@@ -48,7 +48,7 @@ namespace Xnoise
                 west,
                 east);
 
-            tex = map.GetTexture(grad);
+            tex = map.GetTexture();
             tex.Apply();
 
             watch.Stop();
