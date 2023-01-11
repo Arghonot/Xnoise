@@ -1,7 +1,4 @@
-﻿//2D Gradient Perlin Noise
-//https://github.com/przemyslawzaworski/Unity3D-CG-programming
-
-Shader "Xnoise/Generators/VoronoiSpherical"
+Shader "Xnoise/Generators/VoronoiPlanar"
 {
     Properties
     {
@@ -60,8 +57,7 @@ Shader "Xnoise/Generators/VoronoiSpherical"
             float4 pixel_shader(v2f ps) : SV_TARGET
             {
                 _Radius = _Frequency;
-                float2 uv = ps.uv;
-                float3 pos = GetSphericalCartesianFromUV(ps.uv.x, ps.uv.y, _Radius);
+                float3 pos = GetPlanarCartesianFromUV(ps.uv, float3(_OffsetPosition.x,_OffsetPosition.y,_OffsetPosition.z));
 
                 float color = (VoronoiGetValue(pos.x + _OffsetPosition.x, pos.z + _OffsetPosition.y, pos.y + _OffsetPosition.z)) / 2 + 0.5f;
 

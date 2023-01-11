@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NoiseTest2
-  m_Shader: {fileID: 4800000, guid: de684f9c756841745a35d8ed87f45bbd, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6c76ac8918452ca41be57fe7577f2efd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -55,7 +55,7 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 2
+    - _Frequency: 3.6
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -63,10 +63,11 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Octaves: 6
-    - _Persistence: 0.54
+    - _Persistence: 0.43
     - _QueueOffset: 0
     - _Radius: 1
     - _ReceiveShadows: 1
+    - _Seed: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -80,6 +81,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OffsetPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &8203982564034212060
 MonoBehaviour:
   m_ObjectHideFlags: 11

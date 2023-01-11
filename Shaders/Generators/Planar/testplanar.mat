@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2975125661085788723
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NoiseTest3
-  m_Shader: {fileID: 4800000, guid: 0840b43eb270e494d9dc4325511293c2, type: 3}
+  m_Name: testplanar
+  m_Shader: {fileID: 4800000, guid: 7a3acacc2d1ea2b439363351aacc1659, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -37,6 +24,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -56,6 +55,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Permutations:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,29 +67,46 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Displacement: 1
-    - _Distance: 0
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _Displacement: 0.35
+    - _Distance: 0.84
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 6.17
+    - _Frequency: 6.44
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Lacunarity: 69.67
+    - _Lacunarity: 2.25
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Octaves: 0.79
-    - _Persistence: 15.54
+    - _Octaves: 3.58
+    - _Parallax: 0.005
+    - _Persistence: 0.61
     - _QueueOffset: 0
-    - _Radius: 2.13
+    - _Radius: 1.2
     - _ReceiveShadows: 1
-    - _Seed: 74.17
+    - _Seed: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -98,6 +118,19 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OffsetPosition: {r: 5, g: 0, b: 0, a: 0}
+    - _OffsetPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &827563489023507434
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4

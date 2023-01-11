@@ -60,7 +60,7 @@
             fixed4 frag(v2f i) : SV_Target
             {
                 // sample the texture
-                float3 pos = GetCartesianFromUV(i.uv.x, i.uv.y, _Radius);
+                float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
                 float color = ComputeCylinder(
                     pos.x + _OffsetPosition.x,

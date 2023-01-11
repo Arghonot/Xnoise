@@ -1,13 +1,18 @@
-﻿Shader "Xnoise/Generators/SphericalChecker"
+Shader "Xnoise/Generators/PerlinPlanar"
 {
     Properties
     {
+        _Frequency("Frequency", Float) = 1
+        _Lacunarity("lacunarity", Float) = 1
+        _Persistence("Persistence", Float) = 1
+        _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Seed("Seed", Float) = 1
     }
-        SubShader
+    SubShader
     {
-        Tags { "RenderType" = "Opaque" }
+        Tags { "RenderType"="Opaque" }
         LOD 100
 
         Pass
@@ -19,6 +24,7 @@
             #include "UnityCG.cginc"
             #include "../../noiseSimplex.cginc"
             #include "../../LibnoiseUtils.cginc"
+            #include "../../CGINCs/Perlin.cginc"
 
             struct appdata
             {
@@ -31,7 +37,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            float _Frequency, _Lacunarity, _Octaves, _Persistence, _Seed;
             int _Radius;
             float4 _OffsetPosition;
 
@@ -44,23 +50,13 @@
                 return o;
             }
 
-            float ComputeChecker(float x, float y, float z)
+            fixed4 frag (v2f i) : SV_Target
             {
-                int ix = (int)(floor(x));
-                int iy = (int)(floor(y));
-                int iz = (int)(floor(z));
+                float3 pos = GetPlanarCartesianFromUV(i.uv, float3(_OffsetPosition.x, _OffsetPosition.y, _OffsetPosition.z));
+                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
 
-                return (ix & 1 ^ iy & 1 ^ iz & 1) != 0 ? -1.0 : 1.0;
-            }
 
-            fixed4 frag(v2f i) : SV_Target
-            {
-                float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
-
-                float color = ComputeChecker(
-                    pos.x + _OffsetPosition.x,
-                    pos.y + _OffsetPosition.y,
-                    pos.z + _OffsetPosition.z) / 2 + 0.5f;
+                float color = (GetPerlin(pos, _Seed, _Frequency, _Lacunarity, _Persistence, _Octaves) + 1.0 ) / 2.0;
 
                 return float4(color, color, color, 1);
             }

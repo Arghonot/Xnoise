@@ -1,11 +1,16 @@
-﻿Shader "Xnoise/Generators/SphericalChecker"
+﻿Shader "Xnoise/Generators/BillowSpherical"
 {
     Properties
     {
+        _Frequency("Frequency", Float) = 1
+        _Lacunarity("lacunarity", Float) = 1
+        _Persistence("Persistence", Float) = 1
+        _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Seed("seed", Float) = 1
     }
-        SubShader
+    SubShader
     {
         Tags { "RenderType" = "Opaque" }
         LOD 100
@@ -19,6 +24,7 @@
             #include "UnityCG.cginc"
             #include "../../noiseSimplex.cginc"
             #include "../../LibnoiseUtils.cginc"
+            #include "../../CGINCs/Billow.cginc"
 
             struct appdata
             {
@@ -31,7 +37,8 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+
+            float _Seed, _Frequency, _Lacunarity, _Octaves, _Persistence;
             int _Radius;
             float4 _OffsetPosition;
 
@@ -44,23 +51,13 @@
                 return o;
             }
 
-            float ComputeChecker(float x, float y, float z)
-            {
-                int ix = (int)(floor(x));
-                int iy = (int)(floor(y));
-                int iz = (int)(floor(z));
-
-                return (ix & 1 ^ iy & 1 ^ iz & 1) != 0 ? -1.0 : 1.0;
-            }
-
             fixed4 frag(v2f i) : SV_Target
             {
                 float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
-                float color = ComputeChecker(
-                    pos.x + _OffsetPosition.x,
-                    pos.y + _OffsetPosition.y,
-                    pos.z + _OffsetPosition.z) / 2 + 0.5f;
+                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
+
+                float color = GetBillow(pos, _Frequency, _Persistence, _Lacunarity, _Octaves) / 2 + 0.5f;
 
                 return float4(color, color, color, 1);
             }
