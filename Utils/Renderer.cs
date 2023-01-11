@@ -1,6 +1,5 @@
 ﻿using LibNoise;
 using System.Diagnostics;
-using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 using System.IO;
@@ -59,7 +58,7 @@ namespace Xnoise
             Stopwatch watch = new Stopwatch();
             watch.Start();
 
-            Noise2D map = new Noise2D(
+            var map = new Noise2D(
                 width,
                 Height == 0 ? width / 2 : Height,
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
@@ -71,6 +70,7 @@ namespace Xnoise
                 east);
 
             tex = map.GetTexture();
+
             watch.Stop();
             RenderTime = watch.ElapsedMilliseconds;
         }

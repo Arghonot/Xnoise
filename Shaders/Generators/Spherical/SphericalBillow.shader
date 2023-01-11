@@ -8,6 +8,7 @@
         _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Seed("seed", Float) = 1
     }
     SubShader
     {
@@ -36,7 +37,7 @@
                 float4 vertex : SV_POSITION;
             };
 
-            float _Frequency, _Lacunarity, _Octaves, _Persistence;
+            float _Seed, _Frequency, _Lacunarity, _Octaves, _Persistence;
             int _Radius;
             float4 _OffsetPosition;
 

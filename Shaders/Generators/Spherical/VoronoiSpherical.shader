@@ -10,6 +10,7 @@ Shader "Xnoise/Generators/SphericalVoronoi"
             _Displacement("Displacement",Float) = 0.0
             _Distance("_Distance",Int) = 0
             _Radius("Radius",Float) = 0.0
+            _OffsetPosition("Offset", Vector) = (0,0,0,0)
             _Seed("Seed",Int) = 42
     }
     Subshader
@@ -38,6 +39,7 @@ Shader "Xnoise/Generators/SphericalVoronoi"
             int _Seed, _Distance;
             sampler2D    _Permutations;
             SamplerState   sampler_Permutations;
+            float4 _OffsetPosition;
 
             int GeneratorNoiseX = 1619;
             int GeneratorNoiseY = 31337;
@@ -149,7 +151,7 @@ Shader "Xnoise/Generators/SphericalVoronoi"
                 float2 uv = ps.uv;
                 float3 pos = GetCartesianFromUV(ps.uv.x, ps.uv.y, _Radius);
 
-                float color = (VoronoiGetValue(pos.x, pos.z, pos.y)) / 2 + 0.5f;
+                float color = (VoronoiGetValue(pos.x + _OffsetPosition.x, pos.z + _OffsetPosition.y, pos.y + _OffsetPosition.z)) / 2 + 0.5f;
 
                 return float4(color, color, color, 1);
             }
