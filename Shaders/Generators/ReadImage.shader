@@ -50,7 +50,7 @@ Shader "Xnoise/Modifiers/ReadImage"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float color = tex2D(_TextureA, i.uv);
+                float color = tex2D(_TextureA, float2(i.uv.x - 0.5f, 1 - i.uv.y));
 
                 return float4(color, color, color, 1);
             }
