@@ -36,7 +36,6 @@ namespace Xnoise
             Stopwatch watch = new Stopwatch();
 
             watch.Start();
-
             Noise2D map = new Noise2D(
                 width,
                 Height == 0 ? width / 2 : Height, 
@@ -58,14 +57,20 @@ namespace Xnoise
         public void RenderGPU()
         {
             Stopwatch watch = new Stopwatch();
+            watch.Start();
 
-            var rdB = GetInputValue<SerializableModuleBase>("Input", this.Input).GetSphericalValueGPU(
-                new Vector2(width, Height == 0 ? width / 2 : Height));
+            Noise2D map = new Noise2D(
+                width,
+                Height == 0 ? width / 2 : Height,
+                GetInputValue<SerializableModuleBase>("Input", this.Input));
+            map.useGPU = true;
+            map.GenerateSpherical(
+                south,
+                north,
+                west,
+                east);
 
-            tex = new Texture2D(rdB.width, rdB.height);
-            tex.ReadPixels(new Rect(0, 0, rdB.width, rdB.height), 0, 0);
-            tex.Apply();
-
+            tex = map.GetTexture();
             watch.Stop();
             RenderTime = watch.ElapsedMilliseconds;
         }
