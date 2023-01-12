@@ -8,6 +8,7 @@ Shader "Xnoise/Generators/BillowPlanar"
         _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Rotation("rotation", Vector) = (0, 0, 0, 1)
         _Seed("seed", Float) = 1
     }
     SubShader
@@ -40,7 +41,7 @@ Shader "Xnoise/Generators/BillowPlanar"
 
             float _Seed, _Frequency, _Lacunarity, _Octaves, _Persistence;
             int _Radius;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             v2f vert(appdata v)
             {
@@ -55,7 +56,7 @@ Shader "Xnoise/Generators/BillowPlanar"
             {
                 float3 pos = GetPlanarCartesianFromUV(i.uv, float3(_OffsetPosition.x,_OffsetPosition.y,_OffsetPosition.z));
 
-                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = GetBillow(pos, _Frequency, _Persistence, _Lacunarity, _Octaves) / 2 + 0.5f;
 

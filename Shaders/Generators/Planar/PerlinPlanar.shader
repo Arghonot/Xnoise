@@ -8,6 +8,7 @@ Shader "Xnoise/Generators/PerlinPlanar"
         _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Rotation("rotation", Vector) = (0, 0, 0, 1)
         _Seed("Seed", Float) = 1
     }
     SubShader
@@ -39,7 +40,7 @@ Shader "Xnoise/Generators/PerlinPlanar"
             };
             float _Frequency, _Lacunarity, _Octaves, _Persistence, _Seed;
             int _Radius;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             v2f vert(appdata v)
             {
@@ -53,8 +54,8 @@ Shader "Xnoise/Generators/PerlinPlanar"
             fixed4 frag (v2f i) : SV_Target
             {
                 float3 pos = GetPlanarCartesianFromUV(i.uv, float3(_OffsetPosition.x, _OffsetPosition.y, _OffsetPosition.z));
-                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
 
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = (GetPerlin(pos, _Seed, _Frequency, _Lacunarity, _Persistence, _Octaves) + 1.0 ) / 2.0;
 

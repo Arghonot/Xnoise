@@ -7,6 +7,7 @@ Shader "Xnoise/Generators/RidgedMultifractalPlanar"
         _Octaves("Octaves", Float) = 1
         _Radius("Radius",Float) = 1
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Rotation("rotation", Vector) = (0, 0, 0, 1)
         _Seed("Seed",Int) = 42
     }
         SubShader
@@ -38,7 +39,7 @@ Shader "Xnoise/Generators/RidgedMultifractalPlanar"
             };
             float _Seed, _Frequency, _Lacunarity, _Octaves;
             int _Radius;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             v2f vert(appdata v)
             {
@@ -53,7 +54,7 @@ Shader "Xnoise/Generators/RidgedMultifractalPlanar"
             {
                 float3 pos = GetPlanarCartesianFromUV(i.uv, float3(_OffsetPosition.x, _OffsetPosition.y, _OffsetPosition.z));
 
-                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = GetRidgedMultifractal(pos, _Frequency, _Lacunarity, _Octaves) / 2 + 0.5f;
 

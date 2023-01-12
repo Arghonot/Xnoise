@@ -5,6 +5,7 @@
         _Frequency("Frequency", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Rotation("rotation", Vector) = (0, 0, 0, 1)
     }
         SubShader
     {
@@ -34,7 +35,7 @@
             };
             float _Frequency;
             int _Radius;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             v2f vert(appdata v)
             {
@@ -61,6 +62,8 @@
             fixed4 frag(v2f i) : SV_Target
             {
                 float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
+
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = GetSpheres(
                     pos.x + _OffsetPosition.x,

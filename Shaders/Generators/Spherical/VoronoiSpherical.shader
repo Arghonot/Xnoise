@@ -11,6 +11,7 @@ Shader "Xnoise/Generators/VoronoiSpherical"
             _Distance("_Distance",Int) = 0
             _Radius("Radius",Float) = 0.0
             _OffsetPosition("Offset", Vector) = (0,0,0,0)
+            _Rotation("rotation", Vector) = (0, 0, 0, 1)
             _Seed("Seed",Int) = 42
     }
     Subshader
@@ -39,7 +40,7 @@ Shader "Xnoise/Generators/VoronoiSpherical"
             int _Seed, _Distance;
             sampler2D    _Permutations;
             SamplerState   sampler_Permutations;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             #include "UnityCG.cginc"
             #include "../../LibnoiseUtils.cginc"
@@ -62,6 +63,8 @@ Shader "Xnoise/Generators/VoronoiSpherical"
                 _Radius = _Frequency;
                 float2 uv = ps.uv;
                 float3 pos = GetSphericalCartesianFromUV(ps.uv.x, ps.uv.y, _Radius);
+
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = (VoronoiGetValue(pos.x + _OffsetPosition.x, pos.z + _OffsetPosition.y, pos.y + _OffsetPosition.z)) / 2 + 0.5f;
 

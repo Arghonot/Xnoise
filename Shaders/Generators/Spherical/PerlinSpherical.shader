@@ -8,6 +8,7 @@
         _Octaves("Octaves", Float) = 1
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
+        _Rotation("rotation", Vector) = (0, 0, 0, 1)
         _Seed("Seed", Float) = 1
     }
     SubShader
@@ -39,14 +40,15 @@
             };
             float _Frequency, _Lacunarity, _Octaves, _Persistence, _Seed;
             int _Radius;
-            float4 _OffsetPosition;
+            float4 _OffsetPosition, _Rotation;
 
             v2f vert(appdata v)
             {
                 v2f o;
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-
+                
                 return o;
             }
 
@@ -54,7 +56,7 @@
             {
                 float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
 
-                pos = float3(pos.x + _OffsetPosition.x, pos.y + _OffsetPosition.y, pos.z + _OffsetPosition.z);
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
 
                 float color = (GetPerlin(pos, _Seed, _Frequency, _Lacunarity, _Persistence, _Octaves) + 1.0 ) / 2.0;
 
