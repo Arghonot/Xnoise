@@ -6,6 +6,7 @@
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
         _Rotation("rotation", Vector) = (0, 0, 0, 1)
+        _DisplacementMap("DisplacementMap", 2D) = "white" {}
     }
         SubShader
     {
@@ -33,9 +34,12 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
+
             float _Frequency, _Lacunarity, _Octaves, _Persistence;
             int _Radius;
             float4 _OffsetPosition, _Rotation;
+            sampler2D _DisplacementMap;
+            float4 _DisplacementMap_ST;
 
             v2f vert(appdata v)
             {
@@ -62,7 +66,7 @@
             {
                 float3 pos = GetSphericalCartesianFromUV(i.uv.x, i.uv.y, _Radius);
                 
-                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation) + tex2D(_DisplacementMap, i.uv);
 
                 float color = ComputeCylinder(
                     pos.x + _OffsetPosition.x,
