@@ -9,6 +9,7 @@ Shader "Xnoise/Generators/PerlinPlanar"
         _Radius("radius",Float) = 1.0
         _OffsetPosition("Offset", Vector) = (0,0,0,0)
         _Rotation("rotation", Vector) = (0, 0, 0, 1)
+        _DisplacementMap("DisplacementMap", 2D) = "white" {}
         _Seed("Seed", Float) = 1
     }
     SubShader
@@ -38,10 +39,13 @@ Shader "Xnoise/Generators/PerlinPlanar"
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
+
             float _Frequency, _Lacunarity, _Octaves, _Persistence, _Seed;
             int _Radius;
             float4 _OffsetPosition, _Rotation;
-
+            sampler2D _DisplacementMap;
+            float4 _DisplacementMap_ST;
+            
             v2f vert(appdata v)
             {
                 v2f o;
@@ -55,7 +59,7 @@ Shader "Xnoise/Generators/PerlinPlanar"
             {
                 float3 pos = GetPlanarCartesianFromUV(i.uv, float3(_OffsetPosition.x, _OffsetPosition.y, _OffsetPosition.z));
 
-                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation);
+                pos = GetRotatedPositions(pos, _OffsetPosition, _Rotation) + tex2D(_DisplacementMap, i.uv);
 
                 float color = (GetPerlin(pos, _Seed, _Frequency, _Lacunarity, _Persistence, _Octaves) + 1.0 ) / 2.0;
 
