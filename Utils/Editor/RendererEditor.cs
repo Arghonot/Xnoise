@@ -13,15 +13,27 @@ namespace Xnoise
         public override void OnBodyGUI()
         {
             //base.OnBodyGUI();
-            OriginalUI();
+            //OriginalUI();
 
             Renderer rend = target as Renderer;
 
+            rend.renderMode = GUILayout.Toolbar(rend.renderMode, new string[] { "CPU", "GPU" });
+            rend.projectionMode = EditorGUILayout.Popup(rend.projectionMode, new string[] { "Planar", "Spherical", "Cylindrical" });
+            if (GUILayout.Button("Render"))
+            {
+                rend.Render();
+            }
+            if (GUILayout.Button("Save"))
+            {
+                rend.Save();
+            }
+            rend.PictureName = GUILayout.TextField(rend.PictureName);
+
             GUILayout.Space(5);
 
+            DisplayInputFromName("Input");
             rend.width = EditorGUILayout.IntField("Size ", rend.width);
             GUILayout.Label("Render time (ms) : " + rend.RenderTime.ToString());
-
 
             GUILayout.Space(rend.Space);
 
@@ -29,21 +41,22 @@ namespace Xnoise
             {
                 GUI.DrawTexture(rend.TexturePosition, rend.tex);
             }
+        }
 
-            if (GUILayout.Button("Render - CPU"))
+        private void DisplayInputFromName(string name)
+        {
+            string[] excludes = { "m_Script", "graph", "position", "ports" };
+            SerializedProperty iterator = serializedObject.GetIterator();
+            bool enterChildren = true;
+            while (iterator.NextVisible(enterChildren))
             {
-                rend.RenderCPU();
+                enterChildren = false;
+                if (excludes.Contains(iterator.name)) continue;
+                if (iterator.name == name)
+                {
+                    NodeEditorGUILayout.PropertyField(iterator, true);
+                }
             }
-            if (GUILayout.Button("Render - GPU"))
-            {
-                rend.RenderGPU();
-            }
-            if (GUILayout.Button("Save"))
-            {
-                rend.Save();
-            }
-
-            //GUILayout.Label("Render time (ms) : " + rend.RenderTime.ToString());
         }
 
         void OriginalUI()

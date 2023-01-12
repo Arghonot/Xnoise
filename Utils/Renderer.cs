@@ -22,13 +22,31 @@ namespace Xnoise
         [SerializeField] public Gradient grad = new Gradient();
 
         public float Space = 110;
+        public int renderMode;
+        public int projectionMode;
 
         [Input(ShowBackingValue.Always, ConnectionType.Override, TypeConstraint.Strict)]
         public SerializableModuleBase Input;
 
-        public Rect TexturePosition = new Rect(14, 270, 180, 90);
+        public Rect TexturePosition = new Rect(14, 210, 180, 90);
 
         public long RenderTime;
+
+        public void Render()
+        {
+            if (renderMode == 0)
+            {
+                RenderCPU();
+            }
+            if (renderMode == 1)
+            {
+                RenderGPU();
+            }
+            else
+            {
+
+            }
+        }
 
         public void RenderCPU()
         {
@@ -39,12 +57,19 @@ namespace Xnoise
                 width,
                 Height == 0 ? width / 2 : Height, 
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
+            if (projectionMode == 0)
+            {
+                map.GeneratePlanar(Noise2D.Left, Noise2D.Right, Noise2D.Top, Noise2D.Bottom);
+            }
+            else if (projectionMode == 1)
+            {
+                map.GenerateSpherical(
+                    south,
+                    north,
+                    west,
+                    east);
+            }
 
-            map.GenerateSpherical(
-                south,
-                north,
-                west,
-                east);
 
             tex = map.GetTexture();
             tex.Apply();
@@ -63,11 +88,18 @@ namespace Xnoise
                 Height == 0 ? width / 2 : Height,
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
             map.useGPU = true;
-            map.GenerateSpherical(
-                south,
-                north,
-                west,
-                east);
+            if (projectionMode == 0)
+            {
+                map.GeneratePlanar(Noise2D.Left, Noise2D.Right, Noise2D.Top, Noise2D.Bottom);
+            }
+            else if (projectionMode == 1)
+            {
+                map.GenerateSpherical(
+                    south,
+                    north,
+                    west,
+                    east);
+            }
 
             tex = map.GetTexture();
 
