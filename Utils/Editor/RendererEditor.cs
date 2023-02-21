@@ -12,9 +12,6 @@ namespace Xnoise
     {
         public override void OnBodyGUI()
         {
-            //base.OnBodyGUI();
-            //OriginalUI();
-
             Renderer rend = target as Renderer;
 
             rend.renderMode = GUILayout.Toolbar(rend.renderMode, new string[] { "CPU", "GPU" });
@@ -57,44 +54,6 @@ namespace Xnoise
                     NodeEditorGUILayout.PropertyField(iterator, true);
                 }
             }
-        }
-
-        void OriginalUI()
-        {
-            // Unity specifically requires this to save/update any serial object.
-            // serializedObject.Update(); must go at the start of an inspector gui, and
-            // serializedObject.ApplyModifiedProperties(); goes at the end.
-            serializedObject.Update();
-            string[] excludes = {
-                "m_Script",
-                "graph",
-                "position",
-                "ports",
-                "TexturePosition",
-                "Space",
-                "tex",
-                "size",
-                "RenderTime" };
-
-            // Iterate through serialized properties and draw them like the Inspector (But with ports)
-            SerializedProperty iterator = serializedObject.GetIterator();
-            bool enterChildren = true;
-            while (iterator.NextVisible(enterChildren))
-            {
-                enterChildren = false;
-                if (excludes.Contains(iterator.name)) continue;
-                NodeEditorGUILayout.PropertyField(iterator, true);
-            }
-
-            // Iterate through dynamic ports and draw them in the order in which they are serialized
-            foreach (XNode.NodePort dynamicPort in target.DynamicPorts)
-            {
-                if (NodeEditorGUILayout.IsDynamicPortListPort(dynamicPort)) continue;
-                NodeEditorGUILayout.PortField(dynamicPort);
-            }
-
-            serializedObject.ApplyModifiedProperties();
-
         }
     }
 }

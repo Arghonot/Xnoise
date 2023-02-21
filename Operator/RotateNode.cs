@@ -21,11 +21,11 @@ namespace Xnoise
 
         public override object Run()
         {
-            return new Rotate(
-                GetInputValue<double>("XAngle", this.XAngle),
-                GetInputValue<double>("YAngle", this.YAngle),
-                GetInputValue<double>("ZAngle", this.ZAngle),
-                GetInputValue<SerializableModuleBase>("Controller", this.Controller));
+            return new Rotate();
+                //GetInputValue<double>("XAngle", this.XAngle),
+                //GetInputValue<double>("YAngle", this.YAngle),
+                //GetInputValue<double>("ZAngle", this.ZAngle),
+                //GetInputValue<SerializableModuleBase>("Controller", this.Controller));
         }
     }
 }

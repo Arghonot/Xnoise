@@ -57,6 +57,7 @@ namespace Xnoise
                 width,
                 Height == 0 ? width / 2 : Height, 
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
+
             if (projectionMode == 0)
             {
                 map.GeneratePlanar(Noise2D.Left, Noise2D.Right, Noise2D.Top, Noise2D.Bottom);
@@ -88,6 +89,7 @@ namespace Xnoise
                 Height == 0 ? width / 2 : Height,
                 GetInputValue<SerializableModuleBase>("Input", this.Input));
             map.useGPU = true;
+
             if (projectionMode == 0)
             {
                 map.GeneratePlanar(Noise2D.Left, Noise2D.Right, Noise2D.Top, Noise2D.Bottom);
